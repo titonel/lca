@@ -389,4 +389,4 @@ lca/
 
 ## Licença
 
-Desenvolvido para uso interno da Secretaria Municipal de Saúde de Caraguatatuba. Para dúvidas ou contribuições, abra uma issue no repositório.
+Desenvolvido para uso interno da Ambulatório Médico de Especialidades de Caraguatatuba. Para dúvidas ou contribuições, abra uma issue no repositório.
