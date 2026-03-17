@@ -1,6 +1,6 @@
 # Linhas de Cuidado — Caraguatatuba
 
-Sistema integrado de gestão de **linhas de cuidado** para a Atenção Primária à Saúde do município de Caraguatatuba. Reúne em um único projeto Django os programas de **Hipertensão Arterial Sistêmica (HAS)** e **Anticoagulação**, com autenticação centralizada e controle de acesso por perfil profissional.
+Sistema integrado de gestão de **linhas de cuidado** para o AME de Caraguatatuba. Reúne em um único projeto Django os programas de **Hipertensão Arterial Sistêmica (HAS)** e **Anticoagulação**, com autenticação centralizada e controle de acesso por perfil profissional.
 
 ---
 
