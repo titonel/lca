@@ -1,0 +1,340 @@
+{% extends "anticoagulacao/base.html" %}
+
+{% block content %}
+<link href="https://cdn.jsdelivr.net/npm/nouislider@15.7.1/dist/nouislider.min.css" rel="stylesheet">
+
+<div class="container-fluid mb-5">
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <div>
+            <h2 class="text-primary fw-bold"><i class="bi bi-speedometer2"></i> Dashboard Clínico</h2>
+            <p class="text-muted mb-0">Análise demográfica e clínica em tempo real</p>
+        </div>
+        <div class="d-flex gap-2">
+            <select id="filtroSexo" class="form-select form-select-sm" onchange="atualizarDashboard()">
+                <option value="">Todos os Sexos</option>
+                <option value="Masculino">Masculino</option>
+                <option value="Feminino">Feminino</option>
+            </select>
+            <select id="filtroCidade" class="form-select form-select-sm" onchange="atualizarDashboard()">
+                <option value="">Todas as Cidades</option>
+            </select>
+            <button class="btn btn-sm btn-outline-secondary" onclick="resetarFiltros()">Limpar</button>
+        </div>
+    </div>
+
+    <div class="card shadow-sm border-0 mb-4 bg-white">
+        <div class="card-body px-4 py-3">
+            <h6 class="text-secondary fw-bold mb-4"><i class="bi bi-calendar-range"></i> Filtro Temporal (Data dos Exames)</h6>
+            <div id="slider-temporal" class="mb-3 mx-2"></div>
+            <div class="d-flex justify-content-between text-primary fw-bold small mt-3">
+                <span id="data-inicio-label">--/--/----</span>
+                <span id="data-fim-label">--/--/----</span>
+            </div>
+        </div>
+    </div>
+
+    <div class="row mb-4">
+        <div class="col-md-3">
+            <div class="card shadow-sm border-start border-4 border-primary h-100">
+                <div class="card-body py-3">
+                    <small class="text-muted text-uppercase fw-bold">Pacientes (Filtrados)</small>
+                    <h2 class="display-6 fw-bold text-dark mb-0" id="kpi-pacientes">--</h2>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="card shadow-sm border-start border-4 border-success h-100">
+                <div class="card-body py-3">
+                    <small class="text-muted text-uppercase fw-bold">Exames no Período</small>
+                    <h2 class="display-6 fw-bold text-dark mb-0" id="kpi-exames">--</h2>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="card shadow-sm border-start border-4 border-warning h-100">
+                <div class="card-body py-3">
+                    <small class="text-muted text-uppercase fw-bold">Na Meta</small>
+                    <h2 class="display-6 fw-bold text-dark mb-0" id="kpi-meta">--</h2>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="card shadow-sm border-start border-4 border-danger h-100">
+                <div class="card-body py-3">
+                    <small class="text-muted text-uppercase fw-bold">Fora da Meta</small>
+                    <h2 class="display-6 fw-bold text-dark mb-0" id="kpi-fora">--</h2>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row mb-4">
+        <div class="col-md-4">
+            <div class="card shadow border-0 h-100">
+                <div class="card-header bg-white fw-bold">Faixa Etária</div>
+                <div class="card-body">
+                    <canvas id="chartIdade"></canvas>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="card shadow border-0 h-100">
+                <div class="card-header bg-white fw-bold">Distribuição por Sexo</div>
+                <div class="card-body">
+                    <canvas id="chartSexo" style="max-height: 250px;"></canvas>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="card shadow border-0 h-100">
+                <div class="card-header bg-white fw-bold">Controle INR (Período)</div>
+                <div class="card-body">
+                    <canvas id="chartInr" style="max-height: 250px;"></canvas>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-6">
+            <div class="card shadow border-0">
+                <div class="card-header bg-white fw-bold">Município de Residência</div>
+                <div class="card-body">
+                    <canvas id="chartCidade"></canvas>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="card shadow border-0">
+                <div class="card-header bg-white fw-bold">Indicação Clínica (Top 10)</div>
+                <div class="card-body">
+                    <canvas id="chartPatologia"></canvas>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/nouislider@15.7.1/dist/nouislider.min.js"></script>
+
+<script>
+    let rawData = [];
+    let charts = {};
+    let dataInicioGlobal = 0;
+    let dataFimGlobal = 0;
+
+    document.addEventListener('DOMContentLoaded', function() {
+        carregarDadosIniciais();
+    });
+
+    function carregarDadosIniciais() {
+        fetch('{% url "ac:api_dashboard" %}')
+            .then(r => {
+                if (!r.ok) throw new Error("Erro HTTP: " + r.status);
+                return r.json();
+            })
+            .then(data => {
+                rawData = data.dados_pacientes || [];
+                if (rawData.length === 0) { exibirMensagemVazio(); return; }
+                popularFiltroCidades();
+                inicializarSlider();
+            })
+            .catch(e => { console.error("Erro Crítico no JS:", e); });
+    }
+
+    function exibirMensagemVazio() {
+        document.getElementById('kpi-pacientes').innerText = "0";
+        document.getElementById('kpi-exames').innerText = "0";
+        document.getElementById('kpi-meta').innerText = "0%";
+        document.getElementById('kpi-fora').innerText = "0%";
+    }
+
+    function inicializarSlider() {
+        let minTime = Infinity;
+        let maxTime = -Infinity;
+
+        rawData.forEach(p => {
+            if (p.medicoes && Array.isArray(p.medicoes)) {
+                p.medicoes.forEach(m => {
+                    if (m.data) {
+                        let time = new Date(m.data + "T12:00:00").getTime();
+                        if (!isNaN(time)) {
+                            if (time < minTime) minTime = time;
+                            if (time > maxTime) maxTime = time;
+                        }
+                    }
+                });
+            }
+        });
+
+        if (minTime === Infinity || maxTime === -Infinity) {
+            maxTime = new Date().getTime();
+            minTime = maxTime - (30 * 24 * 60 * 60 * 1000);
+        }
+
+        if (minTime === maxTime) {
+            minTime -= (24 * 60 * 60 * 1000);
+            maxTime += (24 * 60 * 60 * 1000);
+        }
+
+        const slider = document.getElementById('slider-temporal');
+        if (slider.noUiSlider) slider.noUiSlider.destroy();
+
+        noUiSlider.create(slider, {
+            start: [minTime, maxTime],
+            connect: true,
+            range: { 'min': minTime, 'max': maxTime },
+            step: 24 * 60 * 60 * 1000,
+            format: { to: v => v, from: v => v }
+        });
+
+        slider.noUiSlider.on('update', function (values) {
+            dataInicioGlobal = parseInt(values[0]);
+            dataFimGlobal = parseInt(values[1]);
+            document.getElementById('data-inicio-label').innerText = new Date(dataInicioGlobal).toLocaleDateString('pt-BR');
+            document.getElementById('data-fim-label').innerText = new Date(dataFimGlobal).toLocaleDateString('pt-BR');
+            atualizarDashboard();
+        });
+    }
+
+    function atualizarDashboard() {
+        const sexFilter = document.getElementById('filtroSexo').value;
+        const cityFilter = document.getElementById('filtroCidade').value;
+
+        let kpiExames = 0, kpiBaixo = 0, kpiMeta = 0, kpiAlto = 0;
+
+        const filteredData = rawData.filter(p => {
+            return (sexFilter === "" || p.sexo === sexFilter) &&
+                   (cityFilter === "" || p.municipio === cityFilter);
+        });
+
+        filteredData.forEach(p => {
+            if (p.medicoes) {
+                p.medicoes.forEach(m => {
+                    let mTime = new Date(m.data + "T12:00:00").getTime();
+                    if (mTime >= dataInicioGlobal && mTime <= dataFimGlobal) {
+                        kpiExames++;
+                        if (m.inr < p.meta_min) kpiBaixo++;
+                        else if (m.inr > p.meta_max) kpiAlto++;
+                        else kpiMeta++;
+                    }
+                });
+            }
+        });
+
+        const totalInr = kpiBaixo + kpiMeta + kpiAlto;
+
+        document.getElementById('kpi-pacientes').innerText = filteredData.length;
+        document.getElementById('kpi-exames').innerText = kpiExames;
+        document.getElementById('kpi-meta').innerText = totalInr ? Math.round((kpiMeta/totalInr)*100) + '%' : '0%';
+        document.getElementById('kpi-fora').innerText = totalInr ? Math.round(((totalInr - kpiMeta)/totalInr)*100) + '%' : '0%';
+
+        renderChartInr([kpiBaixo, kpiMeta, kpiAlto]);
+        renderChart('chartSexo', 'doughnut', agrupar(filteredData, 'sexo'), ['#36a2eb', '#ff6384'], 'Pacientes');
+        renderChart('chartCidade', 'bar', agrupar(filteredData, 'municipio'), '#4bc0c0', 'Pacientes');
+        renderChart('chartIdade', 'bar', agruparFaixasEtarias(filteredData), '#ff9f40', 'Pacientes');
+        renderChartPatologia(agrupar(filteredData, 'indicacao'));
+    }
+
+    function agrupar(data, key) {
+        const counts = {};
+        data.forEach(item => {
+            const val = item[key] || 'Não Informado';
+            counts[val] = (counts[val] || 0) + 1;
+        });
+        return counts;
+    }
+
+    function agruparFaixasEtarias(data) {
+        const faixas = { '18-30': 0, '31-50': 0, '51-70': 0, '70+': 0 };
+        data.forEach(p => {
+            if (p.idade <= 30) faixas['18-30']++;
+            else if (p.idade <= 50) faixas['31-50']++;
+            else if (p.idade <= 70) faixas['51-70']++;
+            else faixas['70+']++;
+        });
+        return faixas;
+    }
+
+    function renderChart(canvasId, type, dataObj, color, labelName) {
+        const el = document.getElementById(canvasId);
+        if (!el) return;
+        const ctx = el.getContext('2d');
+        if (charts[canvasId]) charts[canvasId].destroy();
+        charts[canvasId] = new Chart(ctx, {
+            type: type,
+            data: {
+                labels: Object.keys(dataObj),
+                datasets: [{
+                    label: labelName || 'Quantidade',
+                    data: Object.values(dataObj),
+                    backgroundColor: color
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: { legend: { display: type === 'doughnut' } }
+            }
+        });
+    }
+
+    function renderChartPatologia(dataObj) {
+        const sorted = Object.entries(dataObj).sort((a, b) => b[1] - a[1]).slice(0, 10);
+        const canvasId = 'chartPatologia';
+        const el = document.getElementById(canvasId);
+        if (!el) return;
+        if (charts[canvasId]) charts[canvasId].destroy();
+        charts[canvasId] = new Chart(el.getContext('2d'), {
+            type: 'bar',
+            data: {
+                labels: sorted.map(i => i[0]),
+                datasets: [{ label: 'Pacientes', data: sorted.map(i => i[1]), backgroundColor: '#9966ff' }]
+            },
+            options: { indexAxis: 'y', responsive: true, maintainAspectRatio: false }
+        });
+    }
+
+    function renderChartInr(dataValues) {
+        const canvasId = 'chartInr';
+        const el = document.getElementById(canvasId);
+        if (!el) return;
+        if (charts[canvasId]) charts[canvasId].destroy();
+        charts[canvasId] = new Chart(el.getContext('2d'), {
+            type: 'pie',
+            data: {
+                labels: ['Abaixo', 'Na Meta', 'Acima'],
+                datasets: [{ data: dataValues, backgroundColor: ['#ffc107', '#198754', '#dc3545'] }]
+            },
+            options: { responsive: true, maintainAspectRatio: false }
+        });
+    }
+
+    function popularFiltroCidades() {
+        const select = document.getElementById('filtroCidade');
+        const cidades = [...new Set(rawData.map(p => p.municipio))].filter(c => c && c !== 'Não Informado').sort();
+        cidades.forEach(c => {
+            const opt = document.createElement('option');
+            opt.value = c;
+            opt.innerText = c;
+            select.appendChild(opt);
+        });
+    }
+
+    function resetarFiltros() {
+        document.getElementById('filtroSexo').value = "";
+        document.getElementById('filtroCidade').value = "";
+        const slider = document.getElementById('slider-temporal');
+        if (slider.noUiSlider) slider.noUiSlider.reset();
+        atualizarDashboard();
+    }
+</script>
+
+<style>
+    .noUi-connect { background: #0d6efd; }
+    .noUi-handle { border-radius: 50%; box-shadow: 0 0 5px rgba(0,0,0,0.2); }
+    .noUi-horizontal .noUi-handle { width: 24px; height: 24px; right: -12px; top: -4px; }
+    .noUi-handle:before, .noUi-handle:after { display: none; }
+</style>
+{% endblock %}

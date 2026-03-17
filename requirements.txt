@@ -1,0 +1,13 @@
+Django>=6.0
+xhtml2pdf
+reportlab
+pypdf
+pandas
+numpy
+openpyxl
+beautifulsoup4
+pdfminer.six
+pdfplumber
+pyhanko
+flask
+requests

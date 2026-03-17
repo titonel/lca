@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="row justify-content-center mt-5">
+    <div class="col-md-4">
+        <div class="card shadow-sm border-0">
+            <div class="card-header bg-warning text-dark text-center py-3">
+                <h5 class="mb-0 fw-bold"><i class="fas fa-key me-2"></i>Alterar Senha</h5>
+            </div>
+            <div class="card-body p-4">
+                <p class="text-muted small mb-3">Por segurança, você precisa alterar sua senha antes de continuar.</p>
+                <form method="POST">
+                    {% csrf_token %}
+                    <div class="mb-3">
+                        <label class="form-label fw-bold">Nova Senha</label>
+                        <input type="password" class="form-control" name="nova_senha" minlength="6" required>
+                    </div>
+                    <div class="mb-4">
+                        <label class="form-label fw-bold">Confirme a Senha</label>
+                        <input type="password" class="form-control" name="confirmacao" minlength="6" required>
+                    </div>
+                    <div class="d-grid">
+                        <button type="submit" class="btn btn-primary fw-bold">Salvar Nova Senha</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

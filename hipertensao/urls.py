@@ -1,0 +1,36 @@
+from django.urls import path
+from . import views
+
+app_name = 'has'
+
+urlpatterns = [
+    path('', views.index, name='index'),
+    path('indices/', views.dashboard_clinico, name='indices'),
+    path('dashboard/', views.dashboard_clinico, name='dashboard_clinico'),
+    path('api/dashboard', views.api_dashboard, name='api_dashboard'),
+    path('pacientes/', views.gestao_pacientes, name='gestao_pacientes'),
+    path('paciente/salvar', views.salvar_paciente, name='salvar_paciente'),
+    path('api/paciente/<int:id>/', views.api_paciente, name='api_paciente'),
+    path('atendimento/', views.atendimento_hub, name='atendimento_hub'),
+    path('atendimento/hub/<int:paciente_id>/', views.hub_opcoes_atendimento, name='hub_opcoes_atendimento'),
+    path('atendimento/multi/<int:paciente_id>/', views.atendimento_multidisciplinar, name='atendimento_multidisciplinar'),
+    path('atendimento/prevent/<int:paciente_id>/', views.atendimento_prevent, name='atendimento_prevent'),
+    path('atendimento/pedidos/<int:paciente_id>/', views.gerar_pedido_exames, name='gerar_pedido_exames'),
+    path('atendimento/exames/<int:atendimento_id>/', views.solicitar_exames, name='solicitar_exames'),
+    path('atendimento/kit-exames/<int:paciente_id>/', views.gerar_kit_exames, name='gerar_kit_exames'),
+    path('atendimento/contrarreferencia-triagem/<int:paciente_id>/', views.gerar_contrarreferencia_triagem, name='gerar_contrarreferencia_triagem'),
+    path('atendimento/paciente/<int:paciente_id>/', views.atendimento_paciente, name='atendimento_paciente'),
+    path('atendimento/menu/', views.atendimento_opcoes, name='atendimento_opcoes'),
+    path('prontuario/medico/<int:paciente_id>/', views.realizar_atendimento_medico, name='atendimento_medico'),
+    path('prontuario/prescricao/<int:atendimento_id>/', views.prescricao_medica_view, name='prescricao_medica'),
+    path('prescricao/imprimir/<int:prescricao_id>/', views.reimprimir_receita, name='reimprimir_receita'),
+    path('medicamentos/', views.gestao_medicamentos, name='gestao_medicamentos'),
+    path('medicamento/salvar', views.salvar_medicamento, name='salvar_medicamento'),
+    path('medicamentos/exportar/', views.exportar_medicamentos_csv, name='exportar_medicamentos_csv'),
+    path('paciente/alta/<int:id>/', views.gerar_alta, name='gerar_alta'),
+    path('paciente/<int:paciente_id>/detalhes/', views.detalhe_paciente, name='detalhe_paciente'),
+    path('monitoramento/', views.monitoramento_lista, name='monitoramento_lista'),
+    path('monitoramento/painel/<int:paciente_id>/', views.monitoramento_painel, name='monitoramento_painel'),
+    path('gestao-admin/pacientes/', views.admin_pacientes, name='admin_pacientes'),
+    path('gestao-admin/pacientes/excluir/<int:paciente_id>/', views.excluir_paciente, name='excluir_paciente'),
+]

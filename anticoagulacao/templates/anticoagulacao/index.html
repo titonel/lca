@@ -1,0 +1,51 @@
+{% extends "anticoagulacao/base.html" %}
+
+{% block content %}
+<div class="row justify-content-center mt-5">
+    <div class="col-md-12 text-center mb-5">
+        <h2 class="fw-light">Sistema de Controle de Anticoagulação</h2>
+    </div>
+
+    <div class="col-md-3 mb-3">
+        <div class="card card-menu h-100 text-center py-4 border-0 shadow-sm" onclick="location.href='{% url 'ac:gestao_pacientes' %}'">
+            <div class="card-body">
+                <i class="bi bi-people-fill text-primary display-4"></i>
+                <h5 class="card-title mt-3">Pacientes</h5>
+                <p class="text-muted small">Cadastro e Edição</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-md-3 mb-3">
+        <div class="card card-menu h-100 text-center py-4 border-0 shadow-sm" onclick="location.href='{% url 'ac:atendimento' %}'">
+            <div class="card-body">
+                <i class="bi bi-activity text-success display-4"></i>
+                <h5 class="card-title mt-3">Atendimento</h5>
+                <p class="text-muted small">Registro de INR</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-md-3 mb-3">
+        <div class="card card-menu h-100 text-center py-4 border-0 shadow-sm" onclick="location.href='{% url 'ac:linha_cuidado' %}'">
+            <div class="card-body">
+                <i class="bi bi-graph-up-arrow text-warning display-4"></i>
+                <h5 class="card-title mt-3">Linha de Cuidado</h5>
+                <p class="text-muted small">Dashboard e Métricas</p>
+            </div>
+        </div>
+    </div>
+
+    {% if user.is_superuser %}
+    <div class="col-md-3 mb-3">
+        <div class="card card-menu h-100 text-center py-4 border-0 shadow-sm border-top border-4 border-dark" onclick="location.href='{% url 'ac:painel_admin' %}'">
+            <div class="card-body">
+                <i class="bi bi-shield-lock-fill text-dark display-4"></i>
+                <h5 class="card-title mt-3">Administração</h5>
+                <p class="text-muted small">Auditoria de Pacientes</p>
+            </div>
+        </div>
+    </div>
+    {% endif %}
+</div>
+{% endblock %}

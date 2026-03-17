@@ -1,0 +1,50 @@
+{% extends "anticoagulacao/base.html" %}
+
+{% block content %}
+<div class="d-flex justify-content-between align-items-center mb-4">
+    <h2 class="text-primary"><i class="bi bi-person-badge"></i> Auditoria de Pacientes</h2>
+    <a href="{% url 'ac:painel_admin' %}" class="btn btn-outline-secondary">Voltar</a>
+</div>
+
+<div class="card shadow-sm border-0">
+    <div class="card-body p-0">
+        <div class="table-responsive">
+            <table class="table table-hover align-middle mb-0">
+                <thead class="table-light">
+                    <tr>
+                        <th class="ps-4">Paciente</th>
+                        <th>Data Inserção</th>
+                        <th>Status</th>
+                        <th>Motivo Alta / Observação</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for p in pacientes %}
+                    <tr>
+                        <td class="ps-4">
+                            <span class="fw-bold">{{ p.nome }}</span>
+                            <small class="d-block text-muted">CPF: {{ p.cpf|default:"---" }}</small>
+                        </td>
+                        <td>{{ p.data_insercao|date:"d/m/Y" }}</td>
+                        <td>
+                            {% if p.ativo %}
+                                <span class="badge bg-success">Ativo</span>
+                            {% else %}
+                                <span class="badge bg-danger">Inativo (Alta)</span>
+                            {% endif %}
+                        </td>
+                        <td>
+                            {% if not p.ativo %}
+                                <small class="text-muted">Alta em: {{ p.data_alta|date:"d/m/Y" }}</small>
+                            {% else %}
+                                <small class="text-success">Em acompanhamento</small>
+                            {% endif %}
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+{% endblock %}

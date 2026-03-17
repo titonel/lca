@@ -1,0 +1,125 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AME Caraguatatuba - Hipertensão</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <style>
+        body { min-height: 100vh; display: flex; flex-direction: column; }
+        .wrapper { display: flex; flex: 1; }
+        .sidebar { min-width: 250px; background-color: #004587; color: white; min-height: 100vh; }
+        .sidebar a { color: rgba(255,255,255,0.8); text-decoration: none; padding: 15px; display: block; }
+        .sidebar a:hover { background-color: #003366; color: white; }
+        .sidebar a.active { background-color: #F26522; color: white; }
+        .content { flex: 1; padding: 20px; background-color: #f8f9fa; }
+    </style>
+</head>
+<body>
+
+    <nav class="navbar navbar-dark bg-dark px-3">
+        <a class="navbar-brand" href="{% url 'has:index' %}">AME - Linha de Cuidado de Hipertensão</a>
+        <div class="text-white">
+            Olá, {{ user.get_full_name|default:user.username }}
+            {% if user.is_superuser %}(Admin){% endif %} |
+            <a href="{% url 'logout' %}" class="text-white fw-bold ms-2" style="text-decoration: underline;">Sair</a>
+        </div>
+    </nav>
+
+    <div class="wrapper">
+        <nav class="sidebar">
+            <ul class="list-unstyled mt-3">
+
+                <li>
+                    <a href="{% url 'index' %}" class="text-warning fw-bold">
+                        <i class="fas fa-arrow-left me-2"></i> ← Linhas de Cuidado
+                    </a>
+                </li>
+
+                <li class="border-top border-secondary mt-2 pt-2">
+                    <a href="{% url 'has:index' %}">
+                        <i class="fas fa-home me-2"></i> Início (Hipertensão)
+                    </a>
+                </li>
+
+                {% if user.is_superuser or user.tipo_profissional == 'ENF' or user.tipo_profissional == 'NUT' or user.tipo_profissional == 'FAR' or user.tipo_profissional == 'MED' %}
+                <li>
+                    <a href="{% url 'has:atendimento_opcoes' %}">
+                        <i class="fas fa-stethoscope me-2"></i> Atendimento
+                    </a>
+                </li>
+                {% endif %}
+
+                <li>
+                    <a href="{% url 'has:atendimento_hub' %}">
+                        <i class="fas fa-user-nurse me-2"></i> Prontuário Médico
+                    </a>
+                </li>
+
+                {% if user.is_superuser or user.tipo_profissional == 'ENF' or user.tipo_profissional == 'NUT' or user.tipo_profissional == 'FAR' %}
+                <li>
+                    <a href="{% url 'has:monitoramento_lista' %}">
+                        <i class="fas fa-desktop me-2"></i> Monitoramento
+                    </a>
+                </li>
+                {% endif %}
+
+                {% if user.is_superuser %}
+                <li>
+                    <a href="{% url 'gestao_usuarios' %}">
+                        <i class="fas fa-user-md me-2"></i> Equipe / Usuários
+                    </a>
+                </li>
+                <li>
+                    <a href="{% url 'has:gestao_medicamentos' %}">
+                        <i class="fas fa-pills me-2"></i> Farmácia
+                    </a>
+                </li>
+                <li>
+                    <a href="{% url 'has:indices' %}">
+                        <i class="fas fa-chart-line me-2"></i> Índices e Métricas
+                    </a>
+                </li>
+                <li class="nav-header mt-4 fw-bold text-muted small text-uppercase px-3">Administração</li>
+
+                <li>
+                    <a href="{% url 'has:dashboard_clinico' %}" class="{% if request.resolver_match.url_name == 'dashboard_clinico' %}active{% endif %}">
+                        <i class="fas fa-chart-line me-2"></i> Dashboard Clínico
+                    </a>
+                </li>
+
+                <li>
+                    <a href="{% url 'has:admin_pacientes' %}">
+                        <i class="fas fa-user-shield me-2 text-danger"></i> Gestão de Pacientes
+                    </a>
+                </li>
+
+                <li>
+                    <a href="{% url 'gestao_usuarios' %}" class="{% if request.resolver_match.url_name == 'gestao_usuarios' %}active{% endif %}">
+                        <i class="fas fa-user-md me-2"></i> Gestão de Usuários (Equipe)
+                    </a>
+                </li>
+                {% endif %}
+
+            </ul>
+        </nav>
+
+        <main class="content">
+            {% if messages %}
+                {% for message in messages %}
+                    <div class="alert alert-{{ message.tags }} alert-dismissible fade show" role="alert">
+                        {{ message }}
+                        <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+                    </div>
+                {% endfor %}
+            {% endif %}
+            {% block content %}
+            {% endblock %}
+        </main>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

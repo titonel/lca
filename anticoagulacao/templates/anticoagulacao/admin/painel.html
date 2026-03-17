@@ -1,0 +1,89 @@
+{% extends "anticoagulacao/base.html" %}
+
+{% block content %}
+<div class="container-fluid">
+    <div class="mb-4">
+        <h2 class="text-primary fw-bold"><i class="bi bi-shield-lock-fill"></i> Painel de Controle Administrativo</h2>
+        <p class="text-muted">Gestão e auditoria da Linha de Cuidado de Anticoagulação</p>
+    </div>
+
+    <div class="row g-4 mb-5">
+        <div class="col-md-4">
+            <div class="card h-100 border-0 shadow-sm hover-shadow transition">
+                <div class="card-body text-center p-4">
+                    <div class="icon-shape bg-primary bg-opacity-10 text-primary rounded-circle mb-3 mx-auto" style="width: 60px; height: 60px; display: flex; align-items: center; justify-content: center;">
+                        <i class="bi bi-people-fill fs-3"></i>
+                    </div>
+                    <h4>Gestão de Usuários</h4>
+                    <p class="text-muted small">Gerencie logins, perfis de acesso e status da equipe de saúde.</p>
+                    <a href="{% url 'gestao_usuarios' %}" class="btn btn-primary w-100">Acessar Usuários</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-4">
+            <div class="card h-100 border-0 shadow-sm hover-shadow transition">
+                <div class="card-body text-center p-4">
+                    <div class="icon-shape bg-success bg-opacity-10 text-success rounded-circle mb-3 mx-auto" style="width: 60px; height: 60px; display: flex; align-items: center; justify-content: center;">
+                        <i class="bi bi-person-badge-fill fs-3"></i>
+                    </div>
+                    <h4>Auditoria de Pacientes</h4>
+                    <p class="text-muted small">Visão administrativa de todos os pacientes (ativos e inativos).</p>
+                    <a href="{% url 'ac:gerenciar_pacientes_admin' %}" class="btn btn-success w-100">Acessar Pacientes</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-4">
+            <div class="card h-100 border-0 shadow-sm hover-shadow transition">
+                <div class="card-body text-center p-4">
+                    <div class="icon-shape bg-info bg-opacity-10 text-info rounded-circle mb-3 mx-auto" style="width: 60px; height: 60px; display: flex; align-items: center; justify-content: center;">
+                        <i class="bi bi-database-fill-gear fs-3"></i>
+                    </div>
+                    <h4>Django Admin</h4>
+                    <p class="text-muted small">Interface técnica nativa para manutenção avançada do banco.</p>
+                    <a href="/admin/" target="_blank" class="btn btn-info text-white w-100">Abrir Backend</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-6">
+            <div class="card border-0 shadow-sm">
+                <div class="card-header bg-white fw-bold">Estatísticas Gerais</div>
+                <div class="card-body">
+                    <ul class="list-group list-group-flush">
+                        <li class="list-group-item d-flex justify-content-between align-items-center">
+                            Total de Pacientes
+                            <span class="badge bg-primary rounded-pill">{{ total_pacientes }}</span>
+                        </li>
+                        <li class="list-group-item d-flex justify-content-between align-items-center">
+                            Usuários do Sistema
+                            <span class="badge bg-success rounded-pill">{{ usuarios.count }}</span>
+                        </li>
+                        <li class="list-group-item d-flex justify-content-between align-items-center">
+                            Versão do Sistema
+                            <span class="text-muted">Linhas de Cuidado 1.0</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        
+        <div class="col-md-6">
+            <div class="card border-0 shadow-sm bg-primary text-white">
+                <div class="card-body p-4">
+                    <h5><i class="bi bi-info-circle"></i> Dica de Segurança</h5>
+                    <p class="small mb-0">Nunca compartilhe sua senha de administrador. O sistema utiliza RBAC para garantir que cada ação seja vinculada ao profissional logado, garantindo total rastreabilidade jurídica conforme as normas do CFM/COFEN.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<style>
+    .hover-shadow:hover { transform: translateY(-5px); box-shadow: 0 10px 20px rgba(0,0,0,0.1) !important; }
+    .transition { transition: all 0.3s ease; }
+</style>
+{% endblock %}

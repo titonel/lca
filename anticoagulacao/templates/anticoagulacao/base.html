@@ -1,0 +1,55 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Anticoagulação - AME Caraguatatuba</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.0/font/bootstrap-icons.css">
+    <style>
+        body { background-color: #f4f6f9; }
+        .card-menu { transition: transform 0.2s; cursor: pointer; }
+        .card-menu:hover { transform: translateY(-5px); box-shadow: 0 4px 15px rgba(0,0,0,0.1); }
+        .navbar-brand { font-weight: bold; color: #0d6efd !important; }
+    </style>
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-light bg-white shadow-sm mb-4">
+    <div class="container">
+        <a class="navbar-brand" href="{% url 'ac:index' %}">
+            <i class="bi bi-heart-pulse-fill"></i> Anticoagulação - AME
+        </a>
+
+        {% if user.is_authenticated %}
+        <div class="d-flex align-items-center">
+            <a href="{% url 'index' %}" class="btn btn-outline-secondary btn-sm me-2">
+                <i class="bi bi-arrow-left"></i> Linhas de Cuidado
+            </a>
+            <span class="text-muted me-3">
+                <i class="bi bi-person-circle"></i> Olá, {{ user.get_short_name|default:user.username }}
+            </span>
+            <a href="{% url 'ac:index' %}" class="btn btn-outline-primary btn-sm me-2">Início</a>
+            <a href="{% url 'logout' %}" class="btn btn-danger btn-sm">Sair</a>
+        </div>
+        {% endif %}
+    </div>
+</nav>
+
+    <div class="container">
+        {% if messages %}
+            {% for message in messages %}
+                <div class="alert alert-{{ message.tags }} alert-dismissible fade show" role="alert">
+                    {{ message }}
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                </div>
+            {% endfor %}
+        {% endif %}
+
+        {% block content %}{% endblock %}
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="{% static 'anticoagulacao/js/scripts.js' %}"></script>
+</body>
+</html>
