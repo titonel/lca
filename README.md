@@ -256,10 +256,36 @@ Informe o nome de usuário, e-mail (opcional) e senha quando solicitado.
 
 ### Passo 6 — (Opcional) Carregar dados iniciais de medicamentos
 
-Se houver um fixture de medicamentos disponível:
+Os dados de medicamentos são fornecidos no arquivo `medicamentos.toml`.
+Para importá-los use o comando abaixo:
 
 ```bash
-python manage.py loaddata medicamentos.json
+python manage.py load_medicamentos_toml medicamentos.toml
+```
+
+Use a flag `--atualizar` para sobrescrever registros já existentes no banco:
+
+```bash
+python manage.py load_medicamentos_toml medicamentos.toml --atualizar
+```
+
+> **Dependência de Python < 3.11:** instale `tomli` antes de executar o comando:
+> ```bash
+> pip install tomli
+> ```
+> Python 3.11+ já inclui suporte nativo a TOML (`tomllib`).
+
+O arquivo `medicamentos.toml` segue a estrutura abaixo — edite-o para adicionar
+ou ajustar entradas antes de importar:
+
+```toml
+[[medicamentos]]
+classe           = "IECA"
+principio_ativo  = "Enalapril"   # obrigatório
+dose_padrao      = "10 mg"       # obrigatório
+nomes_comerciais = "Renitec"
+ativo            = true
+is_remume        = true
 ```
 
 ---

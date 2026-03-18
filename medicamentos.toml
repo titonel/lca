@@ -1,0 +1,80 @@
+# Dados iniciais de medicamentos — Linha de Cuidado de Hipertensão
+#
+# Campos obrigatórios: principio_ativo, dose_padrao
+# Campos opcionais  : classe, nomes_comerciais, ativo (true/false), is_remume (true/false)
+#
+# Uso:
+#   python manage.py load_medicamentos_toml medicamentos.toml
+#   python manage.py load_medicamentos_toml medicamentos.toml --atualizar
+
+[[medicamentos]]
+classe            = "IECA"
+principio_ativo   = "Enalapril"
+dose_padrao       = "10 mg"
+nomes_comerciais  = "Renitec, Vasotec"
+ativo             = true
+is_remume         = true
+
+[[medicamentos]]
+classe            = "IECA"
+principio_ativo   = "Enalapril"
+dose_padrao       = "20 mg"
+nomes_comerciais  = "Renitec, Vasotec"
+ativo             = true
+is_remume         = true
+
+[[medicamentos]]
+classe            = "BRA"
+principio_ativo   = "Losartana"
+dose_padrao       = "50 mg"
+nomes_comerciais  = "Cozaar, Hyzaar"
+ativo             = true
+is_remume         = true
+
+[[medicamentos]]
+classe            = "BRA"
+principio_ativo   = "Losartana"
+dose_padrao       = "100 mg"
+nomes_comerciais  = "Cozaar"
+ativo             = true
+is_remume         = false
+
+[[medicamentos]]
+classe            = "Betabloqueador"
+principio_ativo   = "Atenolol"
+dose_padrao       = "25 mg"
+nomes_comerciais  = "Tenormin"
+ativo             = true
+is_remume         = true
+
+[[medicamentos]]
+classe            = "Betabloqueador"
+principio_ativo   = "Atenolol"
+dose_padrao       = "50 mg"
+nomes_comerciais  = "Tenormin"
+ativo             = true
+is_remume         = true
+
+[[medicamentos]]
+classe            = "Diurético"
+principio_ativo   = "Hidroclorotiazida"
+dose_padrao       = "25 mg"
+nomes_comerciais  = "Clorana, Diuremid"
+ativo             = true
+is_remume         = true
+
+[[medicamentos]]
+classe            = "BCC"
+principio_ativo   = "Anlodipino"
+dose_padrao       = "5 mg"
+nomes_comerciais  = "Norvasc, Amlodil"
+ativo             = true
+is_remume         = true
+
+[[medicamentos]]
+classe            = "BCC"
+principio_ativo   = "Anlodipino"
+dose_padrao       = "10 mg"
+nomes_comerciais  = "Norvasc, Amlodil"
+ativo             = true
+is_remume         = false
