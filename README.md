@@ -22,7 +22,7 @@ Sistema integrado de gestão de **linhas de cuidado** para o AME de Caraguatatub
 O sistema foi desenvolvido para apoiar equipes multiprofissionais de saúde no gerenciamento de pacientes vinculados a programas de atenção especializada no âmbito do SUS. Cada linha de cuidado possui fluxos clínicos próprios, com suporte a consultas, prescrições, geração de PDFs, monitoramento e dashboards analíticos.
 
 **Tecnologias utilizadas:**
-- Python 3.10+ + Django 6
+- Python 3.10+ + Django 5
 - SQLite (banco de dados padrão)
 - Bootstrap 5.3 + Font Awesome 6 (interface)
 - xhtml2pdf + ReportLab (geração de PDFs)
@@ -238,6 +238,14 @@ pip install -r requirements.txt
 Execute as migrações para criar as tabelas:
 
 ```bash
+# 1. Gera a migration inicial do core (obrigatório primeiro, pois os outros dependem dele)
+python manage.py makemigrations core
+
+# 2. Gera as migrations dos demais apps
+python manage.py makemigrations hipertensao
+python manage.py makemigrations anticoagulacao
+
+# 3. Aplica todas as migrations
 python manage.py migrate
 ```
 
