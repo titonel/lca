@@ -22,8 +22,9 @@ Sistema integrado de gestão de **linhas de cuidado** para o AME de Caraguatatub
 O sistema foi desenvolvido para apoiar equipes multiprofissionais de saúde no gerenciamento de pacientes vinculados a programas de atenção especializada no âmbito do SUS. Cada linha de cuidado possui fluxos clínicos próprios, com suporte a consultas, prescrições, geração de PDFs, monitoramento e dashboards analíticos.
 
 **Tecnologias utilizadas:**
-- Python 3 + Django 5
+- Python 3.10+ + Django 5
 - SQLite (banco de dados padrão)
+- Bootstrap 5.3 + Font Awesome 6 (interface)
 - xhtml2pdf + ReportLab (geração de PDFs)
 - HTML/CSS/JavaScript no front-end
 
@@ -192,7 +193,7 @@ O sistema adota um modelo RBAC (Role-Based Access Control) com dois tipos de atr
 
 ### Pré-requisitos
 
-- Python 3.10 ou superior
+- Python 3.10 ou superior (recomendado 3.11+ para suporte nativo a TOML)
 - pip
 - Git
 - (Opcional) Virtualenv ou venv
@@ -264,10 +265,36 @@ Informe o nome de usuário, e-mail (opcional) e senha quando solicitado.
 
 ### Passo 6 — (Opcional) Carregar dados iniciais de medicamentos
 
-Se houver um fixture de medicamentos disponível:
+Os dados de medicamentos são fornecidos no arquivo `medicamentos.toml`.
+Para importá-los use o comando abaixo:
 
 ```bash
-python manage.py loaddata medicamentos.json
+python manage.py load_medicamentos_toml medicamentos.toml
+```
+
+Use a flag `--atualizar` para sobrescrever registros já existentes no banco:
+
+```bash
+python manage.py load_medicamentos_toml medicamentos.toml --atualizar
+```
+
+> **Dependência de Python < 3.11:** instale `tomli` antes de executar o comando:
+> ```bash
+> pip install tomli
+> ```
+> Python 3.11+ já inclui suporte nativo a TOML (`tomllib`).
+
+O arquivo `medicamentos.toml` segue a estrutura abaixo — edite-o para adicionar
+ou ajustar entradas antes de importar:
+
+```toml
+[[medicamentos]]
+classe           = "IECA"
+principio_ativo  = "Enalapril"   # obrigatório
+dose_padrao      = "10 mg"       # obrigatório
+nomes_comerciais = "Renitec"
+ativo            = true
+is_remume        = true
 ```
 
 ---
@@ -379,18 +406,19 @@ Substitua pelo endereço correto do serviço laboratorial da sua instituição.
 lca/
 ├── manage.py
 ├── requirements.txt
+├── medicamentos.toml        # Dados iniciais do banco de medicamentos
 ├── linhas_cuidado/          # Configuração do projeto Django
 │   ├── settings.py
 │   ├── urls.py
 │   └── wsgi.py
 ├── core/                    # Autenticação e gestão de usuários
-│   ├── models.py            # Modelo Usuario customizado
+│   ├── models.py            # Modelo Usuario customizado (RBAC multi-alçada)
 │   ├── views.py
 │   ├── urls.py
 │   ├── forms.py
 │   ├── decorators.py        # Controle de acesso por perfil
 │   └── templates/
-│       ├── base.html
+│       ├── base.html        # Layout base com navbar padrão
 │       ├── login.html
 │       ├── index.html
 │       ├── trocar_senha.html
@@ -402,7 +430,11 @@ lca/
 │   ├── forms.py
 │   ├── decorators.py
 │   ├── services_cid.py      # Mapeamento CID-10 → CID-11
+│   ├── management/
+│   │   └── commands/
+│   │       └── load_medicamentos_toml.py  # Importação via TOML
 │   └── templates/hipertensao/
+│       └── sidebar.html     # Layout base da área HAS (navbar + conteúdo)
 ├── anticoagulacao/          # Linha de cuidado Anticoagulação
 │   ├── models.py
 │   ├── views.py

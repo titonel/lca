@@ -1,601 +1,80 @@
-[[medicamentos]] # [cite: 1]
-classe = "Diurético Tiazídico"
-principio_ativo = "Hidroclorotiazida"
-dosagem_comum = "25mg"
-nomes_comerciais = "Clorana, Moduretic, Drenol"
-disponivel_sus = "Sim"
-
-[[medicamentos]] # [cite: 1]
-classe = "Diurético Tiazídico"
-principio_ativo = "Hidroclorotiazida"
-dosagem_comum = "50mg"
-nomes_comerciais = "Clorana, Moduretic, Drenol"
-disponivel_sus = "Sim"
-
-[[medicamentos]] # [cite: 1]
-classe = "Diurético Tiazídico"
-principio_ativo = "Clortalidona"
-dosagem_comum = "12.5mg"
-nomes_comerciais = "Higroton, Diurix"
-disponivel_sus = "Sim"
-
-[[medicamentos]] # [cite: 1]
-classe = "Diurético Tiazídico"
-principio_ativo = "Clortalidona"
-dosagem_comum = "25mg"
-nomes_comerciais = "Higroton, Diurix"
-disponivel_sus = "Sim"
-
-[[medicamentos]] # [cite: 1]
-classe = "Diurético Tiazídico"
-principio_ativo = "Clortalidona"
-dosagem_comum = "50mg"
-nomes_comerciais = "Higroton, Diurix"
-disponivel_sus = "Sim"
-
-[[medicamentos]] # [cite: 1]
-classe = "Diurético Tiazídico"
-principio_ativo = "Indapamida"
-dosagem_comum = "1.5mg"
-nomes_comerciais = "Natrilix, Indapen, Fludex"
-disponivel_sus = "Não"
-
-[[medicamentos]] # [cite: 1]
-classe = "Diurético Tiazídico"
-principio_ativo = "Indapamida"
-dosagem_comum = "2.5mg"
-nomes_comerciais = "Natrilix, Indapen, Fludex"
-disponivel_sus = "Não"
-
-[[medicamentos]] # [cite: 1]
-classe = "Diurético de Alça"
-principio_ativo = "Furosemida"
-dosagem_comum = "40mg"
-nomes_comerciais = "Lasix, Neosemid"
-disponivel_sus = "Sim"
-
-[[medicamentos]] # [cite: 1]
-classe = "Diurético de Alça"
-principio_ativo = "Furosemida"
-dosagem_comum = "80mg"
-nomes_comerciais = "Lasix, Neosemid"
-disponivel_sus = "Sim"
-
-[[medicamentos]] # [cite: 1]
-classe = "Diurético de Alça"
-principio_ativo = "Bumetanida"
-dosagem_comum = "0.5mg"
-nomes_comerciais = "Burinex"
-disponivel_sus = "Não"
-
-[[medicamentos]] # [cite: 1]
-classe = "Diurético de Alça"
-principio_ativo = "Bumetanida"
-dosagem_comum = "1mg"
-nomes_comerciais = "Burinex"
-disponivel_sus = "Não"
-
-[[medicamentos]] # [cite: 1]
-classe = "Diurético de Alça"
-principio_ativo = "Torasemida"
-dosagem_comum = "5mg"
-nomes_comerciais = "Diuver, Demadex"
-disponivel_sus = "Não"
-
-[[medicamentos]] # [cite: 1, 2]
-classe = "Diurético de Alça"
-principio_ativo = "Torasemida"
-dosagem_comum = "10mg"
-nomes_comerciais = "Diuver, Demadex"
-disponivel_sus = "Não"
-
-[[medicamentos]] # [cite: 2]
-classe = "Diurético Poupador de Potássio"
-principio_ativo = "Espironolactona"
-dosagem_comum = "25mg"
-nomes_comerciais = "Aldactone, Diaquan"
-disponivel_sus = "Sim"
-
-[[medicamentos]] # [cite: 2]
-classe = "Diurético Poupador de Potássio"
-principio_ativo = "Espironolactona"
-dosagem_comum = "50mg"
-nomes_comerciais = "Aldactone, Diaquan"
-disponivel_sus = "Sim"
-
-[[medicamentos]] # [cite: 2]
-classe = "Diurético Poupador de Potássio"
-principio_ativo = "Espironolactona"
-dosagem_comum = "100mg"
-nomes_comerciais = "Aldactone, Diaquan"
-disponivel_sus = "Sim"
-
-[[medicamentos]] # [cite: 2]
-classe = "Diurético Poupador de Potássio"
-principio_ativo = "Eplerenona"
-dosagem_comum = "25mg"
-nomes_comerciais = "Inspra"
-disponivel_sus = "Não"
-
-[[medicamentos]] # [cite: 2]
-classe = "Diurético Poupador de Potássio"
-principio_ativo = "Eplerenona"
-dosagem_comum = "50mg"
-nomes_comerciais = "Inspra"
-disponivel_sus = "Não"
-
-[[medicamentos]] # [cite: 2]
-classe = "Diurético Poupador de Potássio"
-principio_ativo = "Amilorida"
-dosagem_comum = "5mg"
-nomes_comerciais = "Midamor"
-disponivel_sus = "Não"
-
-[[medicamentos]] # [cite: 2]
-classe = "Diurético Poupador de Potássio"
-principio_ativo = "Triamtereno"
-dosagem_comum = "50mg"
-nomes_comerciais = "Dyrenium"
-disponivel_sus = "Não"
-
-[[medicamentos]] # [cite: 2]
-classe = "Diurético Poupador de Potássio"
-principio_ativo = "Triamtereno"
-dosagem_comum = "100mg"
-nomes_comerciais = "Dyrenium"
-disponivel_sus = "Não"
-
-[[medicamentos]] # [cite: 2]
-classe = "Inibidor da ECA"
-principio_ativo = "Captopril"
-dosagem_comum = "12.5mg"
-nomes_comerciais = "Capoten, Hipocatril"
-disponivel_sus = "Sim"
-
-[[medicamentos]] # [cite: 2]
-classe = "Inibidor da ECA"
-principio_ativo = "Captopril"
-dosagem_comum = "25mg"
-nomes_comerciais = "Capoten, Hipocatril"
-disponivel_sus = "Sim"
-
-[[medicamentos]] # [cite: 2]
-classe = "Inibidor da ECA"
-principio_ativo = "Captopril"
-dosagem_comum = "50mg"
-nomes_comerciais = "Capoten, Hipocatril"
-disponivel_sus = "Sim"
-
-[[medicamentos]] # [cite: 2]
-classe = "Inibidor da ECA"
-principio_ativo = "Enalapril"
-dosagem_comum = "5mg"
-nomes_comerciais = "Renitec, Eupressin, Glioten"
-disponivel_sus = "Sim"
-
-[[medicamentos]] # [cite: 2]
-classe = "Inibidor da ECA"
-principio_ativo = "Enalapril"
-dosagem_comum = "10mg"
-nomes_comerciais = "Renitec, Eupressin, Glioten"
-disponivel_sus = "Sim"
-
-[[medicamentos]] # [cite: 2]
-classe = "Inibidor da ECA"
-principio_ativo = "Enalapril"
-dosagem_comum = "20mg"
-nomes_comerciais = "Renitec, Eupressin, Glioten"
-disponivel_sus = "Sim"
-
-[[medicamentos]] # [cite: 2, 3]
-classe = "Inibidor da ECA"
-principio_ativo = "Ramipril"
-dosagem_comum = "2.5mg"
-nomes_comerciais = "Triatec, Naprix"
-disponivel_sus = "Não"
-
-[[medicamentos]] # [cite: 3]
-classe = "Inibidor da ECA"
-principio_ativo = "Ramipril"
-dosagem_comum = "5mg"
-nomes_comerciais = "Triatec, Naprix"
-disponivel_sus = "Não"
-
-[[medicamentos]] # [cite: 3]
-classe = "Inibidor da ECA"
-principio_ativo = "Ramipril"
-dosagem_comum = "10mg"
-nomes_comerciais = "Triatec, Naprix"
-disponivel_sus = "Não"
-
-[[medicamentos]] # [cite: 3]
-classe = "Inibidor da ECA"
-principio_ativo = "Lisinopril"
-dosagem_comum = "5mg"
-nomes_comerciais = "Zestril, Prinivil"
-disponivel_sus = "Não"
-
-[[medicamentos]] # [cite: 3]
-classe = "Inibidor da ECA"
-principio_ativo = "Lisinopril"
-dosagem_comum = "10mg"
-nomes_comerciais = "Zestril, Prinivil"
-disponivel_sus = "Não"
-
-[[medicamentos]] # [cite: 3]
-classe = "Inibidor da ECA"
-principio_ativo = "Lisinopril"
-dosagem_comum = "20mg"
-nomes_comerciais = "Zestril, Prinivil"
-disponivel_sus = "Não"
-
-[[medicamentos]] # [cite: 3]
-classe = "Inibidor da ECA"
-principio_ativo = "Quinapril"
-dosagem_comum = "10mg"
-nomes_comerciais = "Accupril, Quinapril"
-disponivel_sus = "Não"
-
-[[medicamentos]] # [cite: 3]
-classe = "Inibidor da ECA"
-principio_ativo = "Quinapril"
-dosagem_comum = "20mg"
-nomes_comerciais = "Accupril, Quinapril"
-disponivel_sus = "Não"
-
-[[medicamentos]] # [cite: 3]
-classe = "Inibidor da ECA"
-principio_ativo = "Quinapril"
-dosagem_comum = "40mg"
-nomes_comerciais = "Accupril, Quinapril"
-disponivel_sus = "Não"
-
-[[medicamentos]] # [cite: 3]
-classe = "Inibidor da ECA"
-principio_ativo = "Fosinopril"
-dosagem_comum = "10mg"
-nomes_comerciais = "Monopril, Fosinopril"
-disponivel_sus = "Não"
-
-[[medicamentos]] # [cite: 3]
-classe = "Inibidor da ECA"
-principio_ativo = "Fosinopril"
-dosagem_comum = "20mg"
-nomes_comerciais = "Monopril, Fosinopril"
-disponivel_sus = "Não"
-
-[[medicamentos]] # [cite: 3]
-classe = "Inibidor da ECA"
-principio_ativo = "Fosinopril"
-dosagem_comum = "40mg"
-nomes_comerciais = "Monopril, Fosinopril"
-disponivel_sus = "Não"
-
-[[medicamentos]] # [cite: 3]
-classe = "Inibidor da ECA"
-principio_ativo = "Perindopril"
-dosagem_comum = "4mg"
-nomes_comerciais = "Coversyl"
-disponivel_sus = "Não"
-
-[[medicamentos]] # [cite: 3]
-classe = "Inibidor da ECA"
-principio_ativo = "Perindopril"
-dosagem_comum = "5mg"
-nomes_comerciais = "Coversyl"
-disponivel_sus = "Não"
-
-[[medicamentos]] # [cite: 3]
-classe = "Inibidor da ECA"
-principio_ativo = "Perindopril"
-dosagem_comum = "8mg"
-nomes_comerciais = "Coversyl"
-disponivel_sus = "Não"
-
-[[medicamentos]] # [cite: 3]
-classe = "Inibidor da ECA"
-principio_ativo = "Trandolapril"
-dosagem_comum = "1mg"
-nomes_comerciais = "Mavik"
-disponivel_sus = "Não"
-
-[[medicamentos]] # [cite: 3]
-classe = "Inibidor da ECA"
-principio_ativo = "Trandolapril"
-dosagem_comum = "2mg"
-nomes_comerciais = "Mavik"
-disponivel_sus = "Não"
-
-[[medicamentos]] # [cite: 3]
-classe = "Inibidor da ECA"
-principio_ativo = "Trandolapril"
-dosagem_comum = "4mg"
-nomes_comerciais = "Mavik"
-disponivel_sus = "Não"
-
-[[medicamentos]] # [cite: 3, 4]
-classe = "Bloqueador do Receptor de Angiotensina (BRA)"
-principio_ativo = "Losartana Potássica"
-dosagem_comum = "50mg"
-nomes_comerciais = "Cozaar, Aradois, Corus"
-disponivel_sus = "Sim"
-
-[[medicamentos]] # [cite: 4]
-classe = "Bloqueador do Receptor de Angiotensina (BRA)"
-principio_ativo = "Losartana Potássica"
-dosagem_comum = "100mg"
-nomes_comerciais = "Cozaar, Aradois, Corus"
-disponivel_sus = "Sim"
-
-[[medicamentos]] # [cite: 4, 5]
-classe = "Bloqueador do Receptor de Angiotensina (BRA)"
-principio_ativo = "Valsartana"
-dosagem_comum = "80mg; 160mg; 320mg"
-nomes_comerciais = "Diovan, Tara"
-disponivel_sus = "Não"
-
-[[medicamentos]] # [cite: 5]
-classe = "Bloqueador do Receptor de Angiotensina (BRA)"
-principio_ativo = "Valsartana"
-dosagem_comum = "320mg"
-nomes_comerciais = "Diovan, Tara"
-disponivel_sus = "Não"
-
-[[medicamentos]] # [cite: 5]
-classe = "Bloqueador do Receptor de Angiotensina (BRA)"
-principio_ativo = "Candesartana"
-dosagem_comum = "8mg; 16mg; 32mg"
-nomes_comerciais = "Atacand; Blopress"
-disponivel_sus = "Não"
-
-[[medicamentos]] # [cite: 5]
-classe = "Bloqueador do Receptor de Angiotensina (BRA)"
-principio_ativo = "Olmesartana"
-dosagem_comum = "20mg; 40mg"
-nomes_comerciais = "Benicar; Olmetec"
-disponivel_sus = "Não"
-
-[[medicamentos]] # [cite: 5]
-classe = "Bloqueador do Receptor de Angiotensina (BRA)"
-principio_ativo = "Telmisartana"
-dosagem_comum = "40mg; 80mg"
-nomes_comerciais = "Micardis"
-disponivel_sus = "Não"
-
-[[medicamentos]] # [cite: 5]
-classe = "Bloqueador de Canal de Cálcio"
-principio_ativo = "Anlodipino"
-dosagem_comum = "5mg; 10mg"
-nomes_comerciais = "Norvasc; Cordarex; Pressat"
-disponivel_sus = "Sim"
-
-[[medicamentos]] # [cite: 5]
-classe = "Bloqueador de Canal de Cálcio"
-principio_ativo = "Nifedipino"
-dosagem_comum = "10mg; 20mg; Retard"
-nomes_comerciais = "Adalat; Oxcord"
-disponivel_sus = "Sim"
-
-[[medicamentos]] # [cite: 5]
-classe = "Bloqueador de Canal de Cálcio"
-principio_ativo = "Verapamil"
-dosagem_comum = "80mg; 120mg; 240mg"
-nomes_comerciais = "Dilacoron; Vasoton"
-disponivel_sus = "Sim"
-
-[[medicamentos]] # [cite: 5]
-classe = "Bloqueador de Canal de Cálcio"
-principio_ativo = "Diltiazem"
-dosagem_comum = "30mg; 60mg; 90mg; 180mg"
-nomes_comerciais = "Cardizem; Balcor; Dilti"
-disponivel_sus = "Não (Maioria dos estados)"
-
-[[medicamentos]] # [cite: 5]
-classe = "Betabloqueador"
-principio_ativo = "Atenolol"
-dosagem_comum = "25mg; 50mg; 100mg"
-nomes_comerciais = "Atenol; Angipress"
-disponivel_sus = "Sim"
-
-[[medicamentos]] # [cite: 5, 6]
-classe = "Betabloqueador"
-principio_ativo = "Propranolol"
-dosagem_comum = "10mg; 40mg; 80mg"
-nomes_comerciais = "Inderal; Propalol"
-disponivel_sus = "Sim"
-
-[[medicamentos]] # [cite: 6]
-classe = "Betabloqueador"
-principio_ativo = "Carvedilol"
-dosagem_comum = "3.125mg; 6.25mg; 12.5mg; 25mg"
-nomes_comerciais = "Coreg; Ictus; Divelol"
-disponivel_sus = "Sim"
-
-[[medicamentos]] # [cite: 6]
-classe = "Betabloqueador"
-principio_ativo = "Metoprolol (Succinato/Tartarato)"
-dosagem_comum = "25mg; 50mg; 100mg"
-nomes_comerciais = "Selozok; Lopressor"
-disponivel_sus = "Sim (Geralmente Tartarato)"
-
-[[medicamentos]] # [cite: 6]
-classe = "Betabloqueador"
-principio_ativo = "Bisoprolol"
-dosagem_comum = "1.25mg; 2.5mg; 5mg; 10mg"
-nomes_comerciais = "Concor; Iccor"
-disponivel_sus = "Não"
-
-[[medicamentos]] # [cite: 6]
-classe = "Betabloqueador"
-principio_ativo = "Nebivolol"
-dosagem_comum = "5mg"
-nomes_comerciais = "Nebilet; Neblock"
-disponivel_sus = "Não"
-
-[[medicamentos]] # [cite: 6]
-classe = "Vasodilatador Direto"
-principio_ativo = "Hidralazina"
-dosagem_comum = "25mg; 50mg"
-nomes_comerciais = "Apresolina; Neopresol"
-disponivel_sus = "Sim"
-
-[[medicamentos]] # [cite: 6]
-classe = "Vasodilatador Direto"
-principio_ativo = "Minoxidil"
-dosagem_comum = "10mg"
-nomes_comerciais = "Loniten"
-disponivel_sus = "Sim (Uso restrito/Hosp)"
-
-[[medicamentos]] # [cite: 6]
-classe = "Agonista Alfa Central"
-principio_ativo = "Metildopa"
-dosagem_comum = "250mg; 500mg"
-nomes_comerciais = "Aldomet"
-disponivel_sus = "Sim"
-
-[[medicamentos]] # [cite: 6]
-classe = "Agonista Alfa Central"
-principio_ativo = "Clonidina"
-dosagem_comum = "0.100mg; 0.150mg; 0.200mg"
-nomes_comerciais = "Atensina"
-disponivel_sus = "Sim (Alguns estados)"
-
-[[medicamentos]] # [cite: 6]
-classe = "Antiarrítmico"
-principio_ativo = "Amiodarona"
-dosagem_comum = "100mg; 200mg"
-nomes_comerciais = "Ancoron; Atlansil"
-disponivel_sus = "Sim"
-
-[[medicamentos]] # [cite: 6]
-classe = "Antiarrítmico"
-principio_ativo = "Propafenona"
-dosagem_comum = "150mg; 300mg"
-nomes_comerciais = "Ritmonorm"
-disponivel_sus = "Sim"
-
-[[medicamentos]] # [cite: 6]
-classe = "Antiarrítmico"
-principio_ativo = "Sotalol"
-dosagem_comum = "120mg; 160mg"
-nomes_comerciais = "Sotacor"
-disponivel_sus = "Sim"
-
-[[medicamentos]] # [cite: 6]
-classe = "Digitálico"
-principio_ativo = "Digoxina"
-dosagem_comum = "0.25mg"
-nomes_comerciais = "Digoxina; Lanoxin"
-disponivel_sus = "Sim"
-
-[[medicamentos]] # [cite: 6, 7]
-classe = "Inibidor da Neprilisina e Receptor de Angiotensina (ARNI)"
-principio_ativo = "Sacubitril + Valsartana"
-dosagem_comum = "24/26mg; 49/51mg; 97/103mg"
-nomes_comerciais = "Entresto"
-disponivel_sus = "Não (Apenas via judicial/protocolos estaduais)"
-
-[[medicamentos]] # [cite: 7]
-classe = "Inibidor SGLT2"
-principio_ativo = "Dapagliflozina"
-dosagem_comum = "10mg"
-nomes_comerciais = "Forxiga"
-disponivel_sus = "Sim (Protocolo Diabetes/CV)"
-
-[[medicamentos]] # [cite: 7]
-classe = "Inibidor SGLT2"
-principio_ativo = "Empagliflozina"
-dosagem_comum = "10mg; 25mg"
-nomes_comerciais = "Jardiance"
-disponivel_sus = "Não (Em avaliação constante)"
-
-[[medicamentos]] # [cite: 7]
-classe = "Inibidor dos canais If"
-principio_ativo = "Ivabradina"
-dosagem_comum = "5mg; 7.5mg"
-nomes_comerciais = "Procoralan"
-disponivel_sus = "Não"
-
-[[medicamentos]] # [cite: 7]
-classe = "Estatina"
-principio_ativo = "Sinvastatina"
-dosagem_comum = "10mg; 20mg; 40mg"
-nomes_comerciais = "Zocor; Sinvastacor"
-disponivel_sus = "Sim"
-
-[[medicamentos]] # [cite: 7]
-classe = "Estatina"
-principio_ativo = "Atorvastatina"
-dosagem_comum = "10mg; 20mg; 40mg; 80mg"
-nomes_comerciais = "Lipitor; Citalor"
-disponivel_sus = "Sim (Alto Custo/Protocolo)"
-
-[[medicamentos]] # [cite: 7]
-classe = "Estatina"
-principio_ativo = "Rosuvastatina"
-dosagem_comum = "10mg; 20mg; 40mg"
-nomes_comerciais = "Crestor; Vivacor; Rosucor"
-disponivel_sus = "Não"
-
-[[medicamentos]] # [cite: 7]
-classe = "Estatina"
-principio_ativo = "Pitavastatina"
-dosagem_comum = "2mg; 4mg"
-nomes_comerciais = "Livalo"
-disponivel_sus = "Não"
-
-[[medicamentos]] # [cite: 7]
-classe = "Fibrato"
-principio_ativo = "Ciprofibrato"
-dosagem_comum = "100mg"
-nomes_comerciais = "Oroxadin; Lipless"
-disponivel_sus = "Não (Geralmente)"
-
-[[medicamentos]] # [cite: 7]
-classe = "Fibrato"
-principio_ativo = "Fenofibrato"
-dosagem_comum = "200mg; 250mg"
-nomes_comerciais = "Lipidil"
-disponivel_sus = "Sim (Alguns estados)"
-
-[[medicamentos]] # [cite: 7]
-classe = "Fibrato"
-principio_ativo = "Genfibrozila"
-dosagem_comum = "600mg; 900mg"
-nomes_comerciais = "Lopid"
-disponivel_sus = "Sim (Alguns estados)"
-
-[[medicamentos]] # [cite: 7]
-classe = "Fibrato"
-principio_ativo = "Bezafibrato"
-dosagem_comum = "200mg; 400mg"
-nomes_comerciais = "Cedur"
-disponivel_sus = "Sim (Alguns estados)"
-
-[[medicamentos]] # [cite: 7]
-classe = "Inibidor de Absorção de Colesterol"
-principio_ativo = "Ezetimiba"
-dosagem_comum = "10mg"
-nomes_comerciais = "Zetia; Ezetrol"
-disponivel_sus = "Não"
-
-[[medicamentos]] # [cite: 7]
-classe = "Resina de Troca Iônica"
-principio_ativo = "Colestiramina"
-dosagem_comum = "4g (envelope)"
-nomes_comerciais = "Questran"
-disponivel_sus = "Sim (Protocolo Específico)"
-
-[[medicamentos]] # [cite: 7]
-classe = "Inibidor da PCSK9"
-principio_ativo = "Evolocumabe"
-dosagem_comum = "140mg (Caneta)"
-nomes_comerciais = "Repatha"
-disponivel_sus = "Não (Alto custo)"
-
-[[medicamentos]] # [cite: 7, 8]
-classe = "Inibidor da PCSK9"
-principio_ativo = "Alirocumabe"
-dosagem_comum = "75mg; 150mg (Caneta)"
-nomes_comerciais = "Praluent"
-disponivel_sus = "Não (Alto custo)"
+# Dados iniciais de medicamentos — Linha de Cuidado de Hipertensão
+#
+# Campos obrigatórios: principio_ativo, dose_padrao
+# Campos opcionais  : classe, nomes_comerciais, ativo (true/false), is_remume (true/false)
+#
+# Uso:
+#   python manage.py load_medicamentos_toml medicamentos.toml
+#   python manage.py load_medicamentos_toml medicamentos.toml --atualizar
+
+[[medicamentos]]
+classe            = "IECA"
+principio_ativo   = "Enalapril"
+dose_padrao       = "10 mg"
+nomes_comerciais  = "Renitec, Vasotec"
+ativo             = true
+is_remume         = true
+
+[[medicamentos]]
+classe            = "IECA"
+principio_ativo   = "Enalapril"
+dose_padrao       = "20 mg"
+nomes_comerciais  = "Renitec, Vasotec"
+ativo             = true
+is_remume         = true
+
+[[medicamentos]]
+classe            = "BRA"
+principio_ativo   = "Losartana"
+dose_padrao       = "50 mg"
+nomes_comerciais  = "Cozaar, Hyzaar"
+ativo             = true
+is_remume         = true
+
+[[medicamentos]]
+classe            = "BRA"
+principio_ativo   = "Losartana"
+dose_padrao       = "100 mg"
+nomes_comerciais  = "Cozaar"
+ativo             = true
+is_remume         = false
+
+[[medicamentos]]
+classe            = "Betabloqueador"
+principio_ativo   = "Atenolol"
+dose_padrao       = "25 mg"
+nomes_comerciais  = "Tenormin"
+ativo             = true
+is_remume         = true
+
+[[medicamentos]]
+classe            = "Betabloqueador"
+principio_ativo   = "Atenolol"
+dose_padrao       = "50 mg"
+nomes_comerciais  = "Tenormin"
+ativo             = true
+is_remume         = true
+
+[[medicamentos]]
+classe            = "Diurético"
+principio_ativo   = "Hidroclorotiazida"
+dose_padrao       = "25 mg"
+nomes_comerciais  = "Clorana, Diuremid"
+ativo             = true
+is_remume         = true
+
+[[medicamentos]]
+classe            = "BCC"
+principio_ativo   = "Anlodipino"
+dose_padrao       = "5 mg"
+nomes_comerciais  = "Norvasc, Amlodil"
+ativo             = true
+is_remume         = true
+
+[[medicamentos]]
+classe            = "BCC"
+principio_ativo   = "Anlodipino"
+dose_padrao       = "10 mg"
+nomes_comerciais  = "Norvasc, Amlodil"
+ativo             = true
+is_remume         = false
