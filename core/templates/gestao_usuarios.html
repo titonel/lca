@@ -27,13 +27,11 @@
                         <td class="fw-bold">{{ u.get_full_name|default:u.username }}</td>
                         <td class="text-muted">{{ u.username }}</td>
                         <td>
-                            {% if u.is_superuser %}
-                                <span class="badge bg-dark">Admin</span>
-                            {% elif u.tipo_profissional %}
-                                <span class="badge bg-primary">{{ u.get_tipo_profissional_display }}</span>
-                            {% else %}
-                                <span class="badge bg-secondary">Não definido</span>
-                            {% endif %}
+                            {% if u.is_superuser %}<span class="badge bg-dark">Superuser</span> {% endif %}
+                            {% if u.is_administrador %}<span class="badge bg-danger">ADM</span> {% endif %}
+                            {% if u.is_navegador %}<span class="badge bg-info">NAV</span> {% endif %}
+                            {% if u.tipo_profissional %}<span class="badge bg-primary">{{ u.get_tipo_profissional_display }}</span>{% endif %}
+                            {% if not u.is_superuser and not u.is_administrador and not u.is_navegador and not u.tipo_profissional %}<span class="badge bg-secondary">Não definido</span>{% endif %}
                         </td>
                         <td class="small text-muted">
                             {% if u.tipo_registro and u.registro_profissional %}
@@ -143,6 +141,25 @@
                             </div>
                         </div>
                     </div>
+                    <div class="row mb-3">
+                        <div class="col-12">
+                            <label class="form-label fw-bold">Alçadas do Sistema</label>
+                            <div class="d-flex gap-4">
+                                <div class="form-check">
+                                    <input type="checkbox" class="form-check-input" name="is_administrador" id="is_administrador">
+                                    <label class="form-check-label" for="is_administrador">
+                                        <span class="badge bg-danger me-1">ADM</span> Administrador do Sistema
+                                    </label>
+                                </div>
+                                <div class="form-check">
+                                    <input type="checkbox" class="form-check-input" name="is_navegador" id="is_navegador">
+                                    <label class="form-check-label" for="is_navegador">
+                                        <span class="badge bg-info me-1">NAV</span> Navegador
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
@@ -162,6 +179,8 @@ function abrirModalNovo() {
     });
     document.getElementById('is_active').checked = true;
     document.getElementById('mudar_senha').checked = true;
+    document.getElementById('is_administrador').checked = false;
+    document.getElementById('is_navegador').checked = false;
     new bootstrap.Modal(document.getElementById('modalUsuario')).show();
 }
 function editarUsuario(id) {
@@ -180,6 +199,8 @@ function editarUsuario(id) {
             document.getElementById('drt').value = data.drt;
             document.getElementById('is_active').checked = data.is_active;
             document.getElementById('mudar_senha').checked = data.mudar_senha;
+            document.getElementById('is_administrador').checked = data.is_administrador;
+            document.getElementById('is_navegador').checked = data.is_navegador;
             document.getElementById('password').value = '';
             new bootstrap.Modal(document.getElementById('modalUsuario')).show();
         });

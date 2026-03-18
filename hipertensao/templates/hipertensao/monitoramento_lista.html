@@ -6,9 +6,16 @@
 
 <div class="d-flex justify-content-between align-items-center mb-4">
     <div>
-        <h2 class="text-primary fw-bold"><i class="fas fa-tasks me-2"></i>Fila de Monitoramento</h2>
+        <h2 class="text-primary fw-bold"><i class="fas fa-tasks me-2"></i>Gestão de Pacientes</h2>
         <p class="text-muted mb-0">Acompanhamento dos estágios e priorização por Risco CV (AHA).</p>
     </div>
+    {% if user.is_superuser or user.is_administrador or user.tipo_profissional == 'ADM' %}
+    <div>
+        <a href="{% url 'has:admin_pacientes' %}" class="btn btn-outline-danger">
+            <i class="fas fa-user-shield me-2"></i> Gestão de Pacientes (Admin)
+        </a>
+    </div>
+    {% endif %}
 </div>
 
 <div class="card shadow-sm border-0">

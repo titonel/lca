@@ -4,6 +4,8 @@ from django.contrib.auth.models import AbstractUser
 class Usuario(AbstractUser):
     mudar_senha = models.BooleanField(default=False, verbose_name="Forçar Troca de Senha")
     email_verificado = models.BooleanField(default=False, verbose_name="Email Verificado")
+    is_administrador = models.BooleanField(default=False, verbose_name="Administrador do Sistema")
+    is_navegador = models.BooleanField(default=False, verbose_name="Navegador")
 
     TIPO_PROFISSIONAL_CHOICES = [
         ('MED', 'Médico'),
