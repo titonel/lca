@@ -2,6 +2,7 @@ from django.db import models
 from django.conf import settings
 from django.utils import timezone
 from datetime import date
+from core.utils import normalizar_nome
 
 
 class Medicamento(models.Model):
@@ -41,6 +42,10 @@ class Paciente(models.Model):
     siresp = models.CharField(max_length=20, null=True, blank=True, verbose_name="Número CROSS / SIRESP")
 
     altura_ultima = models.DecimalField(max_digits=4, decimal_places=2, null=True, blank=True)
+
+    def save(self, *args, **kwargs):
+        self.nome = normalizar_nome(self.nome)
+        super().save(*args, **kwargs)
 
     def __str__(self):
         return self.nome

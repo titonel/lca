@@ -1,6 +1,7 @@
 from django.db import models
 from django.conf import settings
 from django.utils import timezone
+from core.utils import normalizar_nome
 
 
 class Paciente(models.Model):
@@ -16,6 +17,12 @@ class Paciente(models.Model):
     ativo = models.BooleanField(default=True)
     data_insercao = models.DateTimeField(default=timezone.now)
     data_alta = models.DateField(null=True, blank=True)
+
+    def save(self, *args, **kwargs):
+        self.nome = normalizar_nome(self.nome)
+        if self.medico:
+            self.medico = normalizar_nome(self.medico)
+        super().save(*args, **kwargs)
 
     def __str__(self):
         return self.nome
