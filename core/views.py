@@ -89,5 +89,7 @@ def api_usuario(request, id):
         'tipo_registro': u.tipo_registro or "",
         'registro_profissional': u.registro_profissional or "",
         'is_active': u.is_active,
-        'mudar_senha': u.mudar_senha
+        'mudar_senha': u.mudar_senha,
+        'is_administrador': u.is_administrador,
+        'is_navegador': u.is_navegador,
     })

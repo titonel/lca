@@ -7,7 +7,8 @@ class UsuarioForm(forms.ModelForm):
     class Meta:
         model = Usuario
         fields = ['first_name', 'last_name', 'username', 'email', 'mudar_senha',
-                  'drt', 'tipo_profissional', 'tipo_registro', 'registro_profissional', 'is_active']
+                  'drt', 'tipo_profissional', 'tipo_registro', 'registro_profissional',
+                  'is_active', 'is_administrador', 'is_navegador']
 
     def save(self, commit=True):
         user = super().save(commit=False)

@@ -57,20 +57,8 @@
                     </a>
                 </li>
 
-                {% if user.is_superuser or user.tipo_profissional == 'ENF' or user.tipo_profissional == 'NUT' or user.tipo_profissional == 'FAR' %}
-                <li>
-                    <a href="{% url 'has:monitoramento_lista' %}">
-                        <i class="fas fa-desktop me-2"></i> Monitoramento
-                    </a>
-                </li>
-                {% endif %}
 
-                {% if user.is_superuser %}
-                <li>
-                    <a href="{% url 'gestao_usuarios' %}">
-                        <i class="fas fa-user-md me-2"></i> Equipe / Usuários
-                    </a>
-                </li>
+                {% if user.is_superuser or user.is_administrador or user.tipo_profissional == 'ADM' %}
                 <li>
                     <a href="{% url 'has:gestao_medicamentos' %}">
                         <i class="fas fa-pills me-2"></i> Farmácia
@@ -86,18 +74,6 @@
                 <li>
                     <a href="{% url 'has:dashboard_clinico' %}" class="{% if request.resolver_match.url_name == 'dashboard_clinico' %}active{% endif %}">
                         <i class="fas fa-chart-line me-2"></i> Dashboard Clínico
-                    </a>
-                </li>
-
-                <li>
-                    <a href="{% url 'has:admin_pacientes' %}">
-                        <i class="fas fa-user-shield me-2 text-danger"></i> Gestão de Pacientes
-                    </a>
-                </li>
-
-                <li>
-                    <a href="{% url 'gestao_usuarios' %}" class="{% if request.resolver_match.url_name == 'gestao_usuarios' %}active{% endif %}">
-                        <i class="fas fa-user-md me-2"></i> Gestão de Usuários (Equipe)
                     </a>
                 </li>
                 {% endif %}
