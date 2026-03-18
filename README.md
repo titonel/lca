@@ -22,8 +22,9 @@ Sistema integrado de gestão de **linhas de cuidado** para o AME de Caraguatatub
 O sistema foi desenvolvido para apoiar equipes multiprofissionais de saúde no gerenciamento de pacientes vinculados a programas de atenção especializada no âmbito do SUS. Cada linha de cuidado possui fluxos clínicos próprios, com suporte a consultas, prescrições, geração de PDFs, monitoramento e dashboards analíticos.
 
 **Tecnologias utilizadas:**
-- Python 3 + Django 6
+- Python 3.10+ + Django 6
 - SQLite (banco de dados padrão)
+- Bootstrap 5.3 + Font Awesome 6 (interface)
 - xhtml2pdf + ReportLab (geração de PDFs)
 - HTML/CSS/JavaScript no front-end
 
@@ -192,7 +193,7 @@ O sistema adota um modelo RBAC (Role-Based Access Control) com dois tipos de atr
 
 ### Pré-requisitos
 
-- Python 3.10 ou superior
+- Python 3.10 ou superior (recomendado 3.11+ para suporte nativo a TOML)
 - pip
 - Git
 - (Opcional) Virtualenv ou venv
@@ -397,18 +398,19 @@ Substitua pelo endereço correto do serviço laboratorial da sua instituição.
 lca/
 ├── manage.py
 ├── requirements.txt
+├── medicamentos.toml        # Dados iniciais do banco de medicamentos
 ├── linhas_cuidado/          # Configuração do projeto Django
 │   ├── settings.py
 │   ├── urls.py
 │   └── wsgi.py
 ├── core/                    # Autenticação e gestão de usuários
-│   ├── models.py            # Modelo Usuario customizado
+│   ├── models.py            # Modelo Usuario customizado (RBAC multi-alçada)
 │   ├── views.py
 │   ├── urls.py
 │   ├── forms.py
 │   ├── decorators.py        # Controle de acesso por perfil
 │   └── templates/
-│       ├── base.html
+│       ├── base.html        # Layout base com navbar padrão
 │       ├── login.html
 │       ├── index.html
 │       ├── trocar_senha.html
@@ -420,7 +422,11 @@ lca/
 │   ├── forms.py
 │   ├── decorators.py
 │   ├── services_cid.py      # Mapeamento CID-10 → CID-11
+│   ├── management/
+│   │   └── commands/
+│   │       └── load_medicamentos_toml.py  # Importação via TOML
 │   └── templates/hipertensao/
+│       └── sidebar.html     # Layout base da área HAS (navbar + conteúdo)
 ├── anticoagulacao/          # Linha de cuidado Anticoagulação
 │   ├── models.py
 │   ├── views.py
