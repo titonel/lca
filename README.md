@@ -448,4 +448,4 @@ lca/
 
 ## Licença
 
-Desenvolvido para uso interno da Ambulatório Médico de Especialidades de Caraguatatuba. Para dúvidas ou contribuições, abra uma issue no repositório.
+Desenvolvido para uso interno do Ambulatório Médico de Especialidades (AME) de Caraguatatuba. Para dúvidas ou contribuições, abra uma issue no repositório.
