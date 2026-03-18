@@ -218,6 +218,14 @@ pip install -r requirements.txt
 Execute as migrações para criar as tabelas:
 
 ```bash
+# 1. Gera a migration inicial do core (obrigatório primeiro, pois os outros dependem dele)
+python manage.py makemigrations core
+
+# 2. Gera as migrations dos demais apps
+python manage.py makemigrations hipertensao
+python manage.py makemigrations anticoagulacao
+
+# 3. Aplica todas as migrations
 python manage.py migrate
 ```
 
