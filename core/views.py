@@ -92,6 +92,20 @@ def gestao_usuarios(request):
 
 @login_required
 @admin_only
+def excluir_usuario(request, id):
+    if request.method == 'POST':
+        usuario = get_object_or_404(Usuario, id=id)
+        if usuario == request.user:
+            messages.error(request, 'Você não pode excluir sua própria conta.')
+        else:
+            nome = usuario.get_full_name() or usuario.username
+            usuario.delete()
+            messages.success(request, f'Usuário "{nome}" excluído com sucesso.')
+    return redirect('gestao_usuarios')
+
+
+@login_required
+@admin_only
 def api_usuario(request, id):
     u = get_object_or_404(Usuario, id=id)
     return JsonResponse({
