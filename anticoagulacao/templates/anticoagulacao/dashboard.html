@@ -231,9 +231,9 @@
         document.getElementById('kpi-fora').innerText = totalInr ? Math.round(((totalInr - kpiMeta)/totalInr)*100) + '%' : '0%';
 
         renderChartInr([kpiBaixo, kpiMeta, kpiAlto]);
-        renderChart('chartSexo', 'doughnut', agrupar(filteredData, 'sexo'), ['#36a2eb', '#ff6384'], 'Pacientes');
-        renderChart('chartCidade', 'bar', agrupar(filteredData, 'municipio'), '#4bc0c0', 'Pacientes');
-        renderChart('chartIdade', 'bar', agruparFaixasEtarias(filteredData), '#ff9f40', 'Pacientes');
+        renderChart('chartSexo', 'doughnut', agrupar(filteredData, 'sexo'), ['#0396A6', '#F27D16'], 'Pacientes');
+        renderChart('chartCidade', 'bar', agrupar(filteredData, 'municipio'), '#0396A6', 'Pacientes');
+        renderChart('chartIdade', 'bar', agruparFaixasEtarias(filteredData), '#F27D16', 'Pacientes');
         renderChartPatologia(agrupar(filteredData, 'indicacao'));
     }
 
@@ -290,7 +290,7 @@
             type: 'bar',
             data: {
                 labels: sorted.map(i => i[0]),
-                datasets: [{ label: 'Pacientes', data: sorted.map(i => i[1]), backgroundColor: '#9966ff' }]
+                datasets: [{ label: 'Pacientes', data: sorted.map(i => i[1]), backgroundColor: '#0396A6' }]
             },
             options: { indexAxis: 'y', responsive: true, maintainAspectRatio: false }
         });
@@ -332,7 +332,6 @@
 </script>
 
 <style>
-    .noUi-connect { background: #0d6efd; }
     .noUi-handle { border-radius: 50%; box-shadow: 0 0 5px rgba(0,0,0,0.2); }
     .noUi-horizontal .noUi-handle { width: 24px; height: 24px; right: -12px; top: -4px; }
     .noUi-handle:before, .noUi-handle:after { display: none; }

@@ -135,22 +135,22 @@
                     ['#198754', '#dc3545', '#6c757d']
                 );
 
-                renderChart('chartSexo', 'pie', 
-                    ['Masculino', 'Feminino'], 
-                    data.sexo_dist, 
-                    ['#0d6efd', '#d63384']
+                renderChart('chartSexo', 'pie',
+                    ['Masculino', 'Feminino'],
+                    data.sexo_dist,
+                    ['#0396A6', '#F27D16']
                 );
 
-                renderChart('chartIdade', 'bar', 
-                    data.idade_labels, 
-                    data.idade_data, 
-                    '#ffc107'
+                renderChart('chartIdade', 'bar',
+                    data.idade_labels,
+                    data.idade_data,
+                    '#F27D16'
                 );
-                
-                renderChart('chartMunicipios', 'bar', 
-                    data.mun_labels, 
-                    data.mun_data, 
-                    '#6610f2'
+
+                renderChart('chartMunicipios', 'bar',
+                    data.mun_labels,
+                    data.mun_data,
+                    '#0396A6'
                 );
             })
             .catch(err => console.error(err));

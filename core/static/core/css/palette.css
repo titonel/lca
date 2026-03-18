@@ -1,0 +1,143 @@
+/*
+ * Paleta de Cores — Linhas de Cuidado AME
+ * #0396A6  primário (teal)
+ * #F2D7B6  acento claro (pêssego)
+ * #F27D16  laranja
+ * #F26716  laranja escuro
+ * #F2F2F2  fundo claro
+ */
+
+/* ── Variáveis globais Bootstrap ─────────────────────────── */
+:root {
+    --bs-primary:               #0396A6;
+    --bs-primary-rgb:           3, 150, 166;
+    --bs-info:                  #0396A6;
+    --bs-info-rgb:              3, 150, 166;
+    --bs-warning:               #F27D16;
+    --bs-warning-rgb:           242, 125, 22;
+    --bs-link-color:            #0396A6;
+    --bs-link-hover-color:      #027585;
+    --bs-body-bg:               #F2F2F2;
+}
+
+/* ── Fundo geral ─────────────────────────────────────────── */
+body {
+    background-color: #F2F2F2 !important;
+}
+
+/* ── bg-primary / bg-info ────────────────────────────────── */
+.bg-primary { background-color: #0396A6 !important; }
+.bg-info     { background-color: #0396A6 !important; }
+
+/* ── text-primary / text-info ───────────────────────────── */
+.text-primary { color: #0396A6 !important; }
+.text-info    { color: #0396A6 !important; }
+
+/* ── border-primary / border-info ───────────────────────── */
+.border-primary { border-color: #0396A6 !important; }
+.border-info    { border-color: #0396A6 !important; }
+
+/* ── btn-primary ─────────────────────────────────────────── */
+.btn-primary {
+    --bs-btn-color:             #fff;
+    --bs-btn-bg:                #0396A6;
+    --bs-btn-border-color:      #0396A6;
+    --bs-btn-hover-bg:          #027585;
+    --bs-btn-hover-border-color:#027585;
+    --bs-btn-active-bg:         #025e6f;
+    --bs-btn-active-border-color:#025e6f;
+    --bs-btn-disabled-bg:       #0396A6;
+    --bs-btn-disabled-border-color:#0396A6;
+}
+
+/* ── btn-outline-primary ─────────────────────────────────── */
+.btn-outline-primary {
+    --bs-btn-color:             #0396A6;
+    --bs-btn-border-color:      #0396A6;
+    --bs-btn-hover-bg:          #0396A6;
+    --bs-btn-hover-border-color:#0396A6;
+    --bs-btn-hover-color:       #fff;
+    --bs-btn-active-bg:         #0396A6;
+    --bs-btn-active-border-color:#0396A6;
+    --bs-btn-active-color:      #fff;
+}
+
+/* ── btn-info / btn-outline-info ─────────────────────────── */
+.btn-info {
+    --bs-btn-color:             #fff;
+    --bs-btn-bg:                #0396A6;
+    --bs-btn-border-color:      #0396A6;
+    --bs-btn-hover-bg:          #027585;
+    --bs-btn-hover-border-color:#027585;
+    --bs-btn-active-bg:         #025e6f;
+    --bs-btn-active-border-color:#025e6f;
+}
+.btn-outline-info {
+    --bs-btn-color:             #0396A6;
+    --bs-btn-border-color:      #0396A6;
+    --bs-btn-hover-bg:          #0396A6;
+    --bs-btn-hover-border-color:#0396A6;
+    --bs-btn-hover-color:       #fff;
+    --bs-btn-active-bg:         #0396A6;
+    --bs-btn-active-border-color:#0396A6;
+}
+
+/* ── badge bg-primary / bg-info ─────────────────────────── */
+.badge.bg-primary { background-color: #0396A6 !important; }
+.badge.bg-info    { background-color: #0396A6 !important; }
+
+/* ── bg-primary com opacidade (painel anticoagulação) ───── */
+.bg-primary.bg-opacity-10 {
+    background-color: rgba(3, 150, 166, 0.10) !important;
+}
+.bg-info.bg-opacity-10 {
+    background-color: rgba(3, 150, 166, 0.10) !important;
+}
+
+/* ── bg-warning ──────────────────────────────────────────── */
+.bg-warning               { background-color: #F27D16 !important; }
+.badge.bg-warning         { background-color: #F27D16 !important; }
+.bg-warning.bg-opacity-10 { background-color: rgba(242, 125, 22, 0.10) !important; }
+
+/* ── btn-warning ─────────────────────────────────────────── */
+.btn-warning {
+    --bs-btn-color:             #fff;
+    --bs-btn-bg:                #F27D16;
+    --bs-btn-border-color:      #F27D16;
+    --bs-btn-hover-bg:          #d96a0d;
+    --bs-btn-hover-border-color:#d96a0d;
+    --bs-btn-active-bg:         #c05e0b;
+    --bs-btn-active-border-color:#c05e0b;
+}
+
+/* ── text-warning / border-warning ──────────────────────── */
+.text-warning   { color: #F27D16 !important; }
+.border-warning { border-color: #F27D16 !important; }
+
+/* ── alert-info ──────────────────────────────────────────── */
+.alert-info {
+    --bs-alert-bg:              rgba(3, 150, 166, 0.10);
+    --bs-alert-border-color:    rgba(3, 150, 166, 0.30);
+    --bs-alert-color:           #025e6f;
+}
+
+/* ── Sidebar (Hipertensão) ───────────────────────────────── */
+.sidebar                     { background-color: #0396A6 !important; }
+.sidebar a:hover             { background-color: #027585 !important; }
+.sidebar a.active            { background-color: #F26716 !important; }
+
+/* ── Slider noUiSlider (Anticoagulação dashboard) ────────── */
+.noUi-connect { background: #0396A6 !important; }
+
+/* ── Input focus ─────────────────────────────────────────── */
+.form-control:focus,
+.form-select:focus {
+    border-color: #0396A6;
+    box-shadow: 0 0 0 0.25rem rgba(3, 150, 166, 0.25);
+}
+
+/* ── Acento pêssego em card headers secundários ──────────── */
+.card-header.bg-peach {
+    background-color: #F2D7B6 !important;
+    color: #333 !important;
+}

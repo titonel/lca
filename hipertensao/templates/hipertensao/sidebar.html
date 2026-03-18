@@ -7,19 +7,18 @@
     <title>AME Caraguatatuba - Hipertensão</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link href="{% static 'core/css/palette.css' %}" rel="stylesheet">
     <style>
         body { min-height: 100vh; display: flex; flex-direction: column; }
         .wrapper { display: flex; flex: 1; }
-        .sidebar { min-width: 250px; background-color: #004587; color: white; min-height: 100vh; }
+        .sidebar { min-width: 250px; color: white; min-height: 100vh; }
         .sidebar a { color: rgba(255,255,255,0.8); text-decoration: none; padding: 15px; display: block; }
-        .sidebar a:hover { background-color: #003366; color: white; }
-        .sidebar a.active { background-color: #F26522; color: white; }
-        .content { flex: 1; padding: 20px; background-color: #f8f9fa; }
+        .content { flex: 1; padding: 20px; background-color: #F2F2F2; }
     </style>
 </head>
 <body>
 
-    <nav class="navbar navbar-dark bg-dark px-3">
+    <nav class="navbar navbar-dark bg-info px-3">
         <a class="navbar-brand" href="{% url 'has:index' %}">AME - Linha de Cuidado de Hipertensão</a>
         <div class="text-white">
             Olá, {{ user.get_full_name|default:user.username }}

@@ -1,0 +1,125 @@
+# =============================================================================
+# SEGURANÇA — nunca subir para o repositório
+# =============================================================================
+
+# Variáveis de ambiente e segredos
+.env
+.env.*
+*.env
+secrets.py
+local_settings.py
+settings_local.py
+settings_prod.py
+
+# =============================================================================
+# DJANGO
+# =============================================================================
+
+# Banco de dados local
+*.sqlite3
+*.db
+
+# Arquivos de log
+*.log
+logs/
+
+# Arquivos de mídia enviados por usuários
+media/
+
+# Arquivos estáticos coletados (gerados por collectstatic)
+staticfiles/
+static_root/
+
+# Arquivos de migrações (gerados automaticamente — não versionar)
+*/migrations/*.py
+!*/migrations/__init__.py
+
+# =============================================================================
+# PYTHON
+# =============================================================================
+
+# Bytecode compilado
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+
+# Distribuição / empacotamento
+*.egg
+*.egg-info/
+dist/
+build/
+.eggs/
+wheels/
+*.whl
+MANIFEST
+
+# =============================================================================
+# AMBIENTES VIRTUAIS
+# =============================================================================
+
+.venv/
+venv/
+env/
+ENV/
+.virtualenv/
+Pipfile.lock
+
+# =============================================================================
+# IDEs e editores
+# =============================================================================
+
+# JetBrains (PyCharm, IntelliJ...)
+.idea/
+*.iml
+*.iws
+*.ipr
+
+# VS Code
+.vscode/
+*.code-workspace
+
+# Vim / Emacs
+*.swp
+*.swo
+*~
+\#*\#
+.\#*
+
+# =============================================================================
+# SISTEMA OPERACIONAL
+# =============================================================================
+
+# macOS
+.DS_Store
+.AppleDouble
+.LSOverride
+
+# Windows
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+$RECYCLE.BIN/
+
+# Linux
+.Trash-*
+
+# =============================================================================
+# OUTROS
+# =============================================================================
+
+# Cobertura de testes
+.coverage
+htmlcov/
+.tox/
+.pytest_cache/
+coverage.xml
+*.cover
+
+# Jupyter
+.ipynb_checkpoints/
+
+# Arquivos temporários
+*.tmp
+*.bak
+*.orig
