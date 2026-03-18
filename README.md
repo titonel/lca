@@ -22,7 +22,7 @@ Sistema integrado de gestão de **linhas de cuidado** para o AME de Caraguatatub
 O sistema foi desenvolvido para apoiar equipes multiprofissionais de saúde no gerenciamento de pacientes vinculados a programas de atenção especializada no âmbito do SUS. Cada linha de cuidado possui fluxos clínicos próprios, com suporte a consultas, prescrições, geração de PDFs, monitoramento e dashboards analíticos.
 
 **Tecnologias utilizadas:**
-- Python 3 + Django 6
+- Python 3 + Django 5
 - SQLite (banco de dados padrão)
 - xhtml2pdf + ReportLab (geração de PDFs)
 - HTML/CSS/JavaScript no front-end
