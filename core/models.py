@@ -1,5 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import AbstractUser
+from core.utils import normalizar_nome
 
 class Usuario(AbstractUser):
     mudar_senha = models.BooleanField(default=False, verbose_name="Forçar Troca de Senha")
@@ -39,6 +40,11 @@ class Usuario(AbstractUser):
         if detalhes:
             return f"{nome} | {' - '.join(detalhes)}"
         return nome
+
+    def save(self, *args, **kwargs):
+        self.first_name = normalizar_nome(self.first_name)
+        self.last_name = normalizar_nome(self.last_name)
+        super().save(*args, **kwargs)
 
     def __str__(self):
         return self.assinatura_completa
