@@ -10,16 +10,16 @@
     <style>
         body { min-height: 100vh; display: flex; flex-direction: column; }
         .wrapper { display: flex; flex: 1; }
-        .sidebar { min-width: 250px; background-color: #004587; color: white; min-height: 100vh; }
+        .sidebar { min-width: 250px; background-color: #0e7490; color: white; min-height: 100vh; }
         .sidebar a { color: rgba(255,255,255,0.8); text-decoration: none; padding: 15px; display: block; }
-        .sidebar a:hover { background-color: #003366; color: white; }
+        .sidebar a:hover { background-color: #0891b2; color: white; }
         .sidebar a.active { background-color: #F26522; color: white; }
         .content { flex: 1; padding: 20px; background-color: #f8f9fa; }
     </style>
 </head>
 <body>
 
-    <nav class="navbar navbar-dark bg-dark px-3">
+    <nav class="navbar navbar-dark bg-info px-3">
         <a class="navbar-brand" href="{% url 'has:index' %}">AME - Linha de Cuidado de Hipertensão</a>
         <div class="text-white">
             Olá, {{ user.get_full_name|default:user.username }}
