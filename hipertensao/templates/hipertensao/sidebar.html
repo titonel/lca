@@ -4,12 +4,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AME Caraguatatuba - Hipertensão</title>
+    <title>Linha de Cuidado de Hipertensão - AME Caraguatatuba</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
     <link href="{% static 'core/css/palette.css' %}" rel="stylesheet">
     <style>
         body { min-height: 100vh; display: flex; flex-direction: column; }
+        .navbar-brand { font-weight: bold; }
         .wrapper { display: flex; flex: 1; }
         .sidebar { min-width: 250px; color: white; min-height: 100vh; }
         .sidebar a { color: rgba(255,255,255,0.8); text-decoration: none; padding: 15px; display: block; }
@@ -18,12 +19,29 @@
 </head>
 <body>
 
-    <nav class="navbar navbar-dark bg-info px-3">
-        <a class="navbar-brand" href="{% url 'has:index' %}">AME - Linha de Cuidado de Hipertensão</a>
-        <div class="text-white">
-            Olá, {{ user.get_full_name|default:user.username }}
-            {% if user.is_superuser %}(Admin){% endif %} |
-            <a href="{% url 'logout' %}" class="text-white fw-bold ms-2" style="text-decoration: underline;">Sair</a>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-info shadow-sm">
+        <div class="container-fluid px-4">
+            <a class="navbar-brand" href="{% url 'has:index' %}">
+                <i class="fas fa-hospital me-2"></i>Linha de Cuidado de Hipertensão
+            </a>
+            {% if user.is_authenticated %}
+            <div class="d-flex align-items-center ms-auto gap-2">
+                <span class="text-white-50 small">
+                    <i class="fas fa-user-circle me-1"></i>{{ user.get_full_name|default:user.username }}
+                </span>
+                <a href="{% url 'index' %}" class="btn btn-outline-light btn-sm">
+                    <i class="fas fa-home me-1"></i>Início
+                </a>
+                {% if user.is_superuser or user.is_administrador or user.tipo_profissional == 'ADM' %}
+                <a href="{% url 'gestao_usuarios' %}" class="btn btn-outline-light btn-sm">
+                    <i class="fas fa-users-cog me-1"></i>Usuários
+                </a>
+                {% endif %}
+                <a href="{% url 'logout' %}" class="btn btn-danger btn-sm">
+                    <i class="fas fa-sign-out-alt me-1"></i>Sair
+                </a>
+            </div>
+            {% endif %}
         </div>
     </nav>
 
