@@ -6,7 +6,7 @@ from django.contrib import messages
 from django.http import JsonResponse
 from .models import Usuario
 from .decorators import admin_only
-from .forms import UsuarioForm
+from .forms import UsuarioForm, PerfilForm
 
 def login_view(request):
     if request.user.is_authenticated:
@@ -52,6 +52,22 @@ def index(request):
     if request.user.mudar_senha:
         return redirect('trocar_senha')
     return render(request, 'index.html')
+
+@login_required
+def meu_perfil(request):
+    if request.method == 'POST':
+        form = PerfilForm(request.POST, instance=request.user)
+        if form.is_valid():
+            form.save()
+            messages.success(request, 'Perfil atualizado com sucesso!')
+            return redirect('meu_perfil')
+        else:
+            for f, err in form.errors.items():
+                messages.error(request, f"{f}: {err}")
+    else:
+        form = PerfilForm(instance=request.user)
+    return render(request, 'meu_perfil.html', {'form': form})
+
 
 @login_required
 @admin_only
