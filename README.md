@@ -48,6 +48,8 @@ Módulo central responsável pelo controle de acesso a todo o sistema.
 **Gestão de Usuários (exclusivo para Administradores)**
 - Listagem, criação, edição e remoção de usuários do sistema.
 - API JSON para consulta de dados de um usuário por ID.
+- Cada usuário pode acumular múltiplas alçadas simultaneamente (ex: Médico + Administrador, Enfermeiro + Navegador).
+- Alçadas de sistema configuráveis individualmente por usuário: **Administrador do Sistema** e **Navegador** (independentes do tipo profissional).
 
 **Página Inicial**
 - Dashboard de entrada com acesso rápido às linhas de cuidado disponíveis.
@@ -105,7 +107,8 @@ Módulo completo para gestão da linha de cuidado de HAS, cobrindo todo o percur
 - Cadastro e edição do banco de medicamentos (classe, princípio ativo, dose padrão, nomes comerciais, REMUME).
 - Exportação em CSV com codificação UTF-8.
 
-**Monitoramento**
+**Gestão de Pacientes (Monitoramento)**
+- Acessível na landing page da Hipertensão para perfis **Navegador** e **Administrador**.
 - Painel de acompanhamento com estágio atual de cada paciente na linha de cuidado:
   - *Aguardando 1ª Consulta Multidisciplinar*
   - *Aguardando Exames / Retorno Multi*
@@ -113,6 +116,7 @@ Módulo completo para gestão da linha de cuidado de HAS, cobrindo todo o percur
   - *Acompanhamento Contínuo*
 - Sinalização visual de risco cardiovascular por cor.
 - Painel individual do paciente com totalizadores de consultas e status de exames.
+- Botão **Gestão de Pacientes (Admin)** visível exclusivamente para Administradores, com acesso à área de administração de pacientes (`gestao-admin/pacientes/`).
 
 **Prontuário do Paciente**
 - Histórico completo com gráficos de evolução da PA (PAS, PAD e PAM) ao longo do tempo.
@@ -149,7 +153,8 @@ Módulo para gestão do programa de anticoagulação oral (warfarina e similares
 
 **Painel Administrativo**
 - Lista de todos os pacientes (ativos e inativos) com ordenação por data de inserção.
-- Gerenciamento de usuários e contagem total de pacientes.
+- Contagem total de pacientes e usuários do sistema.
+- Acesso ao Django Admin para manutenção técnica avançada.
 
 **Dashboard Analítico**
 - API com dados consolidados de todos os pacientes ativos e suas medições de INR.
@@ -159,13 +164,27 @@ Módulo para gestão do programa de anticoagulação oral (warfarina e similares
 
 ## Perfis de Acesso
 
-| Perfil | Código | Permissões |
-|--------|--------|------------|
-| Administrador | ADM | Acesso completo: usuários, dashboards, exclusão de pacientes, gestão de medicamentos, exportações |
-| Médico | MED | Consultas médicas, SOAP, prescrições, monitoramento, todas as funcionalidades clínicas |
-| Enfermeiro | ENF | Consultas multidisciplinares, cadastro de pacientes, registro de INR e aferições |
+O sistema adota um modelo RBAC (Role-Based Access Control) com dois tipos de atributos independentes por usuário: **tipo profissional** (função clínica) e **alçadas do sistema** (permissões funcionais). Um mesmo usuário pode ter múltiplas alçadas simultaneamente.
+
+### Tipo Profissional (função clínica)
+
+| Tipo | Código | Acesso clínico |
+|------|--------|----------------|
+| Médico | MED | Consultas médicas, SOAP, prescrições, monitoramento |
+| Enfermeiro | ENF | Consultas multidisciplinares, cadastro de pacientes, aferições, INR |
 | Nutricionista | NUT | Consultas multidisciplinares, cadastro de pacientes |
 | Farmacêutico | FAR | Consultas multidisciplinares, cadastro de pacientes |
+
+### Alçadas do Sistema (permissões funcionais)
+
+| Alçada | Flag | Permissões |
+|--------|------|------------|
+| Administrador do Sistema | `is_administrador` | Gestão de usuários, dashboards gerenciais, exclusão de pacientes, gestão de medicamentos, exportações, Gestão de Pacientes (Admin) na Hipertensão |
+| Navegador | `is_navegador` | Acesso ao card **Gestão de Pacientes** (fila de monitoramento) na Hipertensão |
+
+> **Exemplo:** um Médico com alçada de Administrador tem acesso às funções clínicas de MED e também às funções administrativas. Um Enfermeiro com alçada de Navegador acessa tanto os atendimentos quanto a fila de monitoramento.
+
+> A alçada de Administrador substitui funcionalmente o tipo profissional `ADM` (mantido por compatibilidade), centralizando a gestão de usuários na página inicial do sistema.
 
 ---
 
