@@ -202,6 +202,33 @@ class AtendimentoMedico(models.Model):
         super().save(*args, **kwargs)
 
 
+class ConsultaSubsequenteMulti(models.Model):
+    paciente = models.ForeignKey(Paciente, on_delete=models.CASCADE, related_name='consultas_subsequentes_multi')
+    profissional = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.SET_NULL, null=True)
+    data_atendimento = models.DateTimeField(auto_now_add=True)
+
+    pa_sistolica = models.IntegerField(verbose_name="PA Sistólica (mmHg)")
+    pa_diastolica = models.IntegerField(verbose_name="PA Diastólica (mmHg)")
+    pa_media = models.DecimalField(max_digits=5, decimal_places=1, blank=True, null=True, verbose_name="PA Média (mmHg)")
+
+    glicemia_capilar = models.DecimalField(max_digits=5, decimal_places=1, blank=True, null=True, verbose_name="Glicemia Capilar (mg/dL)")
+    peso = models.DecimalField(max_digits=5, decimal_places=2, blank=True, null=True, verbose_name="Peso (kg)")
+    altura = models.DecimalField(max_digits=4, decimal_places=2, blank=True, null=True, verbose_name="Altura (m)")
+    circunferencia_abdominal = models.DecimalField(max_digits=5, decimal_places=2, blank=True, null=True, verbose_name="Circunferência Abdominal (cm)")
+
+    observacoes = models.TextField(blank=True, null=True)
+
+    def save(self, *args, **kwargs):
+        if self.pa_sistolica and self.pa_diastolica:
+            self.pa_media = round((self.pa_sistolica + (2 * self.pa_diastolica)) / 3, 1)
+        super().save(*args, **kwargs)
+
+    class Meta:
+        ordering = ['-data_atendimento']
+        verbose_name = "Consulta Subsequente Multidisciplinar"
+        verbose_name_plural = "Consultas Subsequentes Multidisciplinares"
+
+
 class PrescricaoMedica(models.Model):
     atendimento = models.OneToOneField(AtendimentoMedico, on_delete=models.CASCADE, related_name='prescricao')
     data_prescricao = models.DateTimeField(auto_now_add=True)
