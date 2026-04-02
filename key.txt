@@ -1,0 +1,4 @@
+python -c "from django.core.management.utils import get_random_secret_key; print(get_random_secret_key())"
+
+resposta:
+_5z%rs3gnty+#6t4_o9nikt6st+hi+ro1k68*)irq9i0@1m7hd

@@ -399,6 +399,16 @@ url = f"http://172.15.0.152:5897/api/laboratorio/{cpf}"
 Substitua pelo endereço correto do serviço laboratorial da sua instituição.
 
 ---
+Caso seja necessário normalizar os nomes dos pacientes, use os seguintes comandos:
+
+```bash
+# Normalizar nomes de pacientes na linha de cuidado de Hipertensão
+# Prévia (sem alterar o banco):
+python manage.py normalizar_nomes --dry-run
+
+# Aplicar a correção:
+python manage.py normalizar_nomes
+```
 
 ## Estrutura do Projeto
 
