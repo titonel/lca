@@ -40,13 +40,13 @@
                                 <a href="{% url 'has:hub_opcoes_atendimento' p.id %}" class="text-decoration-none text-dark hover-link">
                                     {{ p.nome }}
                                 </a>
-                                <a href="{% url 'has:prontuario' p.id %}" class="btn btn-sm btn-outline-secondary ms-2" title="Ver Prontuário">
-                                    <i class="fas fa-folder-open"></i>
-                                </a>
                             </td>
                             <td>{{ p.cpf }}</td>
                             <td>{{ p.idade }} anos</td>
                             <td class="text-end pe-4">
+                                <a href="{% url 'has:prontuario' p.id %}" class="btn btn-sm btn-outline-secondary me-1" title="Ver Prontuário">
+                                    <i class="fas fa-folder-open"></i>
+                                </a>
                                 <a href="{% url 'has:hub_opcoes_atendimento' p.id %}" class="btn btn-sm btn-danger px-3" title="Iniciar Atendimento">
                                     <i class="fas fa-arrow-right me-1"></i> Atender
                                 </a>
