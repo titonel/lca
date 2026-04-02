@@ -306,7 +306,7 @@ def atendimento_multidisciplinar(request, paciente_id):
                 messages.warning(request,
                                  "Atendimento salvo com sucesso! Paciente NÃO ELEGÍVEL. A Contrarreferência para a UBS pode ser impressa no prontuário.")
 
-            return redirect('has:detalhe_paciente', paciente_id=paciente.id)
+            return redirect('has:prontuario', paciente_id=paciente.id)
 
         except Exception as e:
             messages.error(request, f"Erro ao salvar o atendimento: {str(e)}")
@@ -366,7 +366,7 @@ def consulta_subsequente_multi(request, paciente_id):
             )
 
             messages.success(request, "Consulta subsequente registrada com sucesso!")
-            return redirect('has:detalhe_paciente', paciente_id=paciente.id)
+            return redirect('has:prontuario', paciente_id=paciente.id)
 
         except Exception as e:
             messages.error(request, f"Erro ao salvar a consulta: {str(e)}")
@@ -851,7 +851,7 @@ def detalhe_paciente(request, paciente_id):
         'prescricoes': prescricoes
     }
 
-    return render(request, 'hipertensao/detalhe_paciente.html', context)
+    return render(request, 'hipertensao/prontuario.html', context)
 
 
 @login_required
