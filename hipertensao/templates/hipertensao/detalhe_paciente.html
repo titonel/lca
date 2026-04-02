@@ -44,7 +44,12 @@
                     <li><hr class="dropdown-divider"></li>
                     <li>
                         <a class="dropdown-item py-2" href="{% url 'has:atendimento_multidisciplinar' paciente.id %}">
-                            <i class="fas fa-users text-success me-2"></i>Atendimento Multidisciplinar
+                            <i class="fas fa-users text-success me-2"></i>Multi - 1ª Consulta
+                        </a>
+                    </li>
+                    <li>
+                        <a class="dropdown-item py-2" href="{% url 'has:consulta_subsequente_multi' paciente.id %}">
+                            <i class="fas fa-stethoscope text-success me-2"></i>Multi - Consulta Subsequente
                         </a>
                     </li>
                     <li><hr class="dropdown-divider"></li>
@@ -89,7 +94,12 @@
                     <div class="list-group-item">
                         <div class="d-flex w-100 justify-content-between">
                             <h6 class="mb-1 fw-bold
-                                {% if consulta.tipo_visual == 'MÉDICO' %}text-primary{% else %}text-success{% endif %}">
+                                {% if consulta.tipo_visual == 'MÉDICO' %}text-primary
+                                {% elif consulta.tipo_visual == 'MULTI SUBSEQUENTE' %}text-info
+                                {% else %}text-success{% endif %}">
+                                {% if consulta.tipo_visual == 'MULTI SUBSEQUENTE' %}
+                                    <i class="fas fa-stethoscope me-1"></i>
+                                {% endif %}
                                 {{ consulta.tipo_visual }}
                             </h6>
                             <small class="text-muted">{{ consulta.data_ref|date:"d/m/Y H:i" }}</small>
@@ -102,6 +112,12 @@
                                 {% if consulta.cid10_2 %}, {{ consulta.cid10_2 }}{% endif %}
                                 <br>
                                 <strong>Conduta:</strong> {{ consulta.plano|truncatechars:100 }}
+                            {% elif consulta.tipo_visual == 'MULTI SUBSEQUENTE' %}
+                                <strong>PA:</strong> {{ consulta.pa_sistolica }}/{{ consulta.pa_diastolica }} mmHg
+                                &nbsp;|&nbsp;<strong>PAM:</strong> {{ consulta.pa_media }} mmHg
+                                {% if consulta.glicemia_capilar %}<br><strong>Glicemia:</strong> {{ consulta.glicemia_capilar }} mg/dL{% endif %}
+                                {% if consulta.peso %}<br><strong>Peso:</strong> {{ consulta.peso }} kg{% endif %}
+                                {% if consulta.circunferencia_abdominal %} &nbsp;|&nbsp;<strong>Circ. Abd.:</strong> {{ consulta.circunferencia_abdominal }} cm{% endif %}
                             {% else %}
                                 <strong>Antropometria:</strong> Peso: {{ consulta.peso }}kg | IMC: {{ consulta.imc }}<br>
                                 <strong>Risco LOA:</strong> {% if consulta.tem_lesao_orgao %}Sim{% else %}Não{% endif %}

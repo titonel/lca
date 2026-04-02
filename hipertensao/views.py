@@ -16,7 +16,8 @@ from datetime import datetime, date, timedelta
 
 from .models import (
     Paciente, Medicamento, Afericao, AtendimentoMultidisciplinar,
-    AvaliacaoPrevent, AtendimentoMedico, TriagemHipertensao, PrescricaoMedica, ItemPrescricao
+    AvaliacaoPrevent, AtendimentoMedico, TriagemHipertensao, PrescricaoMedica, ItemPrescricao,
+    ConsultaSubsequenteMulti
 )
 from .forms import (
     PacienteForm, AtendimentoMedicoForm, TriagemHASForm
@@ -312,6 +313,66 @@ def atendimento_multidisciplinar(request, paciente_id):
             return redirect('has:atendimento_multidisciplinar', paciente_id=paciente.id)
 
     return render(request, 'hipertensao/atendimento/ficha_enf_aval_inicial.html', {'paciente': paciente, 'idade': idade})
+
+
+@login_required
+@multi_only
+def consulta_subsequente_multi(request, paciente_id):
+    paciente = get_object_or_404(Paciente, id=paciente_id)
+
+    if request.method == 'POST':
+        try:
+            pas = request.POST.get('pa_sistolica', '').strip()
+            pad = request.POST.get('pa_diastolica', '').strip()
+
+            if not pas or not pad:
+                messages.error(request, "PA Sistólica e PA Diastólica são obrigatórias.")
+                return redirect('has:consulta_subsequente_multi', paciente_id=paciente.id)
+
+            pas = int(pas)
+            pad = int(pad)
+
+            glicemia_str = request.POST.get('glicemia_capilar', '').strip()
+            peso_str = request.POST.get('peso', '').strip()
+            altura_str = request.POST.get('altura', '').strip()
+            circunf_str = request.POST.get('circunferencia_abdominal', '').strip()
+
+            glicemia = float(glicemia_str.replace(',', '.')) if glicemia_str else None
+            peso = float(peso_str.replace(',', '.')) if peso_str else None
+            altura = float(altura_str.replace(',', '.')) if altura_str else None
+            circunf = float(circunf_str.replace(',', '.')) if circunf_str else None
+
+            ConsultaSubsequenteMulti.objects.create(
+                paciente=paciente,
+                profissional=request.user,
+                pa_sistolica=pas,
+                pa_diastolica=pad,
+                glicemia_capilar=glicemia,
+                peso=peso,
+                altura=altura,
+                circunferencia_abdominal=circunf,
+                observacoes=request.POST.get('observacoes', '')
+            )
+
+            imc_calc = peso / (altura ** 2) if peso and altura and altura > 0 else None
+            Afericao.objects.create(
+                paciente=paciente,
+                usuario=request.user,
+                pressao_sistolica=pas,
+                pressao_diastolica=pad,
+                peso=peso,
+                altura=altura,
+                imc=imc_calc
+            )
+
+            messages.success(request, "Consulta subsequente registrada com sucesso!")
+            return redirect('has:detalhe_paciente', paciente_id=paciente.id)
+
+        except Exception as e:
+            messages.error(request, f"Erro ao salvar a consulta: {str(e)}")
+            return redirect('has:consulta_subsequente_multi', paciente_id=paciente.id)
+
+    return render(request, 'hipertensao/atendimento/ficha_consulta_subsequente.html', {'paciente': paciente})
 
 
 @login_required
@@ -754,6 +815,7 @@ def detalhe_paciente(request, paciente_id):
 
     atendimentos_med = AtendimentoMedico.objects.filter(paciente=paciente)
     atendimentos_multi = AtendimentoMultidisciplinar.objects.filter(paciente=paciente)
+    consultas_subsequentes = ConsultaSubsequenteMulti.objects.filter(paciente=paciente)
 
     historico_consultas = []
 
@@ -765,6 +827,12 @@ def detalhe_paciente(request, paciente_id):
 
     for a in atendimentos_multi:
         a.tipo_visual = 'MULTIDISCIPLINAR'
+        a.profissional_nome = a.profissional.get_full_name() if a.profissional else 'Equipe Multi'
+        a.data_ref = a.data_atendimento
+        historico_consultas.append(a)
+
+    for a in consultas_subsequentes:
+        a.tipo_visual = 'MULTI SUBSEQUENTE'
         a.profissional_nome = a.profissional.get_full_name() if a.profissional else 'Equipe Multi'
         a.data_ref = a.data_atendimento
         historico_consultas.append(a)
