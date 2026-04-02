@@ -93,7 +93,7 @@ Módulo clínico completo para triagem, acompanhamento multiprofissional e gest�
 | `templates/hipertensao/index.html` | Página inicial da linha de cuidado com resumo e acesso rápido |
 | `templates/hipertensao/pacientes.html` | Listagem e busca de pacientes (nome, CPF, SIRESP) |
 | `templates/hipertensao/prontuario.html` | Prontuário completo: histórico de aferições (gráficos PAS/PAD/PAM), consultas multiprofissionais, consultas médicas e prescrições |
-| `templates/hipertensao/atendimento_hub.html` | Hub de atendimento — ponto de entrada para escolha do tipo de consulta |
+| `templates/hipertensao/atendimento_landing.html` | Hub de atendimento — ponto de entrada para escolha do tipo de consulta |
 | `templates/hipertensao/atendimento_opcoes.html` | Listagem de opções de atendimento disponíveis para o paciente |
 | `templates/hipertensao/hub_atendimento.html` | Variante do hub de atendimento (layout alternativo) |
 | `templates/hipertensao/admin_pacientes.html` | Painel administrativo de pacientes com exclusão e ações privilegiadas |

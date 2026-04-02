@@ -201,7 +201,7 @@ def api_paciente(request, id):
 @login_required
 def atendimento_hub(request):
     pacientes = Paciente.objects.filter(ativo=True).order_by('nome')
-    return render(request, 'hipertensao/atendimento_hub.html', {'pacientes': pacientes})
+    return render(request, 'hipertensao/atendimento_landing.html', {'pacientes': pacientes})
 
 
 @login_required
@@ -398,7 +398,7 @@ def atendimento_prevent(request, paciente_id):
                 risco_10_anos=request.POST.get('risco_10').replace(',', '.'),
                 risco_30_anos=request.POST.get('risco_30').replace(',', '.')
             )
-            return redirect('has:atendimento_hub')
+            return redirect('has:atendimento_landing')
         except Exception as e:
             print(f"Erro: {e}")
 
