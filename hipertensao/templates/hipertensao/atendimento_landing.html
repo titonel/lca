@@ -2,13 +2,13 @@
 {% block content %}
 <div class="container mt-4">
     <div class="d-flex justify-content-between align-items-center mb-4">
-        <h2 class="mb-0"><i class="fas fa-notes-medical text-danger me-2"></i>Realizar Atendimento</h2>
+        <h2 class="mb-0"><i class="fas fa-notes-medical text-danger me-2"></i>Prontuários</h2>
         <a href="{% url 'has:atendimento_opcoes' %}" class="btn btn-outline-secondary shadow-sm">
             <i class="fas fa-arrow-left me-2"></i>Voltar ao Menu
         </a>
     </div>
 
-    <p class="text-muted">Busque e selecione o paciente na lista abaixo para iniciar ou continuar o atendimento.</p>
+    <p class="text-muted">Busque e selecione o paciente na lista abaixo.</p>
 
     <div class="card shadow-sm mb-4 border-0">
         <div class="card-body bg-light rounded">
@@ -45,7 +45,7 @@
                             <td>{{ p.idade }} anos</td>
                             <td class="text-end pe-4">
                                 <a href="{% url 'has:prontuario' p.id %}" class="btn btn-sm btn-outline-secondary me-1" title="Ver Prontuário">
-                                    <i class="fas fa-folder-open"></i>
+                                    <i class="fas fa-address-book"></i> Prontuário
                                 </a>
                                 <a href="{% url 'has:hub_opcoes_atendimento' p.id %}" class="btn btn-sm btn-danger px-3" title="Iniciar Atendimento">
                                     <i class="fas fa-arrow-right me-1"></i> Atender
