@@ -40,6 +40,9 @@
                                 <a href="{% url 'has:hub_opcoes_atendimento' p.id %}" class="text-decoration-none text-dark hover-link">
                                     {{ p.nome }}
                                 </a>
+                                <a href="{% url 'has:prontuario' p.id %}" class="btn btn-sm btn-outline-secondary ms-2" title="Ver Prontuário">
+                                    <i class="fas fa-folder-open"></i>
+                                </a>
                             </td>
                             <td>{{ p.cpf }}</td>
                             <td>{{ p.idade }} anos</td>
