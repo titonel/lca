@@ -62,7 +62,7 @@
                     <tr class="paciente-row" data-filter="{{ p.nome|lower }} {{ p.cpf }} {{ p.siresp|default:'' }}">
 
                         <td class="fw-bold">
-                            <a href="{% url 'has:detalhe_paciente' p.id %}" class="text-decoration-none text-dark hover-link" title="Abrir Prontuário Completo">
+                            <a href="{% url 'has:prontuario' p.id %}" class="text-decoration-none text-dark hover-link" title="Abrir Prontuário Completo">
                                 {{ p.nome }}
                                 {% if not p.ativo %}
                                     <span class="badge bg-secondary ms-2" style="font-size: 0.65rem;">Inativo</span>
@@ -87,7 +87,7 @@
                         <td>{{ p.municipio }}</td>
 
                         <td class="text-end">
-                            <a href="{% url 'has:detalhe_paciente' p.id %}" class="btn btn-sm btn-info text-white me-1 shadow-sm" title="Ver Prontuário Completo">
+                            <a href="{% url 'has:prontuario' p.id %}" class="btn btn-sm btn-info text-white me-1 shadow-sm" title="Ver Prontuário Completo">
                                 <i class="fas fa-folder-open me-1"></i> Prontuário
                             </a>
                             <button class="btn btn-sm btn-outline-secondary shadow-sm" onclick="editarPaciente({{ p.id }})" title="Editar Dados Cadastrais">
