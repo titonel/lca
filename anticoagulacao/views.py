@@ -41,7 +41,7 @@ def salvar_paciente(request):
         else:
             p = Paciente()
 
-        p.nome = request.POST.get('nome', '').upper()
+        p.nome = request.POST.get('nome', '')
         p.cpf = request.POST.get('cpf')
 
         cross = request.POST.get('cross')
