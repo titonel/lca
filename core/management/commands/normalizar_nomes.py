@@ -58,10 +58,12 @@ class Command(BaseCommand):
         alterados = 0
         for p in Paciente.objects.all():
             novo_nome = normalizar_nome(p.nome)
-            if novo_nome != p.nome:
-                self.stdout.write(f'  [HAS Paciente #{p.id}] "{p.nome}" → "{novo_nome}"')
+            novo_municipio = normalizar_nome(p.municipio) if p.municipio else p.municipio
+            if novo_nome != p.nome or novo_municipio != p.municipio:
+                self.stdout.write(f'  [HAS Paciente #{p.id}] nome: "{p.nome}" → "{novo_nome}"'
+                    + (f', município: "{p.municipio}" → "{novo_municipio}"' if novo_municipio != p.municipio else ''))
                 if not dry_run:
-                    Paciente.objects.filter(pk=p.pk).update(nome=novo_nome)
+                    Paciente.objects.filter(pk=p.pk).update(nome=novo_nome, municipio=novo_municipio)
                 alterados += 1
         self.stdout.write(f'Pacientes HAS: {alterados} alterado(s).')
         return alterados
@@ -72,14 +74,16 @@ class Command(BaseCommand):
         for p in Paciente.objects.all():
             novo_nome = normalizar_nome(p.nome)
             novo_medico = normalizar_nome(p.medico) if p.medico else p.medico
-            if novo_nome != p.nome or novo_medico != p.medico:
+            novo_municipio = normalizar_nome(p.municipio) if p.municipio else p.municipio
+            if novo_nome != p.nome or novo_medico != p.medico or novo_municipio != p.municipio:
                 self.stdout.write(
                     f'  [AC Paciente #{p.id}] nome: "{p.nome}" → "{novo_nome}"'
                     + (f', médico: "{p.medico}" → "{novo_medico}"' if novo_medico != p.medico else '')
+                    + (f', município: "{p.municipio}" → "{novo_municipio}"' if novo_municipio != p.municipio else '')
                 )
                 if not dry_run:
                     Paciente.objects.filter(pk=p.pk).update(
-                        nome=novo_nome, medico=novo_medico
+                        nome=novo_nome, medico=novo_medico, municipio=novo_municipio
                     )
                 alterados += 1
         self.stdout.write(f'Pacientes Anticoagulação: {alterados} alterado(s).')

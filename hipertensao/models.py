@@ -45,6 +45,8 @@ class Paciente(models.Model):
 
     def save(self, *args, **kwargs):
         self.nome = normalizar_nome(self.nome)
+        if self.municipio:
+            self.municipio = normalizar_nome(self.municipio)
         super().save(*args, **kwargs)
 
     def __str__(self):
