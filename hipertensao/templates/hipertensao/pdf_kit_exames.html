@@ -29,17 +29,18 @@
     </div>
 
     <div class="titulo-pedido">Protocolo de Investigação Inicial (DBH 2025)</div>
-    <p>Solicitação de Exames Laboratoriais:</p>
+    <h1>Solicitação de Exames Laboratoriais:</h1>
 
     <ul class="lista-exames">
-        <li>Análise de Urina (EAS / Tipo I)</li>
-        <li>Potássio plasmático</li>
-        <li>Creatinina plasmática <span class="destaque">(com cálculo de TFGe)</span></li>
-        <li>Relação Albuminúria/Creatininúria (RAC) - Amostra isolada</li>
+        <li>Hemograma</li>
+        <li>Creatinina sérica <span class="destaque">(com cálculo de TFGe)</span></li>
+        <li>Potássio sérico</li>
         <li>Glicemia de jejum</li>
         <li>Hemoglobina Glicada (HbA1c)</li>
-        <li>Perfil Lipídico (Colesterol Total, HDL-c, LDL-c, Triglicerídeos)</li>
-        <li>Ácido Úrico plasmático</li>
+        <li>Colesterol Total, HDL-c, LDL-c e Triglicerídeos</li>
+        <li>Ácido Úrico</li>
+        <li>Análise de Urina (Tipo I)</li>
+        <li>Relação Albuminúria/Creatininúria em amostra isolada</li>
     </ul>
 
     <div class="assinatura-box">
@@ -66,6 +67,31 @@
     <div style="border: 2px dashed #0396A6; padding: 30px; text-align: center; margin: 40px 0;">
         <h2 style="margin: 0;">Eletrocardiograma (ECG)</h2>
         <p>Convencional de 12 derivações</p>
+    </div>
+
+    <div class="assinatura-box">
+        <div class="linha-assinatura">
+            <strong>{{ usuario.get_full_name }}</strong><br>
+            {{ usuario.tipo_registro }}: {{ usuario.registro_profissional }}<br>
+            AME Caraguatatuba - {{ data_hoje|date:"d/m/Y" }}
+        </div>
+    </div>
+
+ <pdf:nextpage />
+
+    <div class="header-img-container">
+        {% if header_b64 %}<img src="data:image/png;base64,{{ header_b64 }}" class="header-img"/>{% endif %}
+    </div>
+
+    <div class="dados-paciente">
+        <div><strong>Paciente:</strong> {{ paciente.nome }}</div>
+        <div><strong>CPF:</strong> {{ paciente.cpf }}</div>
+    </div>
+
+    <div class="titulo-pedido">Solicitação de Exame Complementar</div>
+
+    <div style="border: 2px dashed #0396A6; padding: 30px; text-align: center; margin: 40px 0;">
+        <h2 style="margin: 0;">Monitorização Ambulatorial da Pressão Arterial (MAPA)</h2>
     </div>
 
     <div class="assinatura-box">
